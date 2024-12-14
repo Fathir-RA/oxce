@@ -1,0 +1,13 @@
+com\mycompany\ocxe\Controller\LoginController.class
+com\mycompany\ocxe\Controller\BerandaController.class
+com\mycompany\ocxe\Controller\LihatTiketController.class
+com\mycompany\ocxe\Controller\PesanTiketController.class
+com\mycompany\ocxe\Model\Penyelam.class
+com\mycompany\ocxe\Model\PesanTiket.class
+com\mycompany\ocxe\Controller\DestinasiController.class
+com\mycompany\ocxe\Main.class
+com\mycompany\ocxe\DAO\PesanTiketDAO.class
+com\mycompany\ocxe\DAO\DestinasiDAO.class
+com\mycompany\ocxe\Model\Destinasi.class
+com\mycompany\ocxe\DAO\PenyelamDAO.class
+com\mycompany\ocxe\Controller\RegisterController.class
