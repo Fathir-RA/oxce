@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #81BFDA;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ocxe.Controller.BerandaController">
+   <children>
+      <AnchorPane layoutX="-4.0" prefHeight="77.0" prefWidth="706.0" style="-fx-background-color: #4335A7;">
+         <children>
+            <Hyperlink fx:id="linkLogOut" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="613.0" layoutY="23.0" onAction="#handleLogOutAction" text="Log Out" textAlignment="CENTER" textFill="WHITE">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font>
+            </Hyperlink>
+            <Hyperlink fx:id="linkLihatDestinasi" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="314.0" layoutY="23.0" onAction="#handleLihatDestinasiAction" text="Lihat Destinasi" textAlignment="CENTER" textFill="WHITE">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font>
+            </Hyperlink>
+            <Hyperlink fx:id="linkLihatTiketSaya" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="456.0" layoutY="23.0" onAction="#handleLihatTiketSayaAction" text="Lihat Tiket Saya" textAlignment="CENTER" textFill="WHITE">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font>
+            </Hyperlink>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="15.0" prefHeight="50.0" prefWidth="171.0" text="Beranda" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="28.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Button fx:id="btnPesan" layoutX="293.0" layoutY="225.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="113.0" text="Pesan Sekarang" onAction="#handlePesanSekarangAction" />
+   </children>
+</AnchorPane>

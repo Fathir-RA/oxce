@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #80C4E9;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ocxe.Controller.RegisterController">
+   <right>
+      <AnchorPane prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: #FBFBFB;" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="idUserField" layoutX="100.0" layoutY="109.0" promptText="ID User" style="-fx-background-color: transparent; -fx-border-color: #80C4E9; -fx-border-width: 0px 0px 2px 0px;" />
+            <PasswordField fx:id="passwordField" layoutX="100.0" layoutY="291.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #80C4E9; -fx-border-width: 0px 0px 2px 0px;" />
+            <Button fx:id="loginButton" layoutX="150.0" layoutY="414.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: #80C4E9;" text="Daftar" />
+            <Text fill="#80c4e9" layoutX="120.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Text>
+            <TextField fx:id="namaField" layoutX="100.0" layoutY="152.0" promptText="Nama Lengkap" style="-fx-background-color: transparent; -fx-border-color: #80C4E9; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="umurField" layoutX="100.0" layoutY="198.0" promptText="Umur" style="-fx-background-color: transparent; -fx-border-color: #80C4E9; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="alamatField" layoutX="100.0" layoutY="245.0" promptText="Alamat" style="-fx-background-color: transparent; -fx-border-color: #80C4E9; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="noHpField" layoutX="100.0" layoutY="337.0" promptText="No HP" style="-fx-background-color: transparent; -fx-border-color: #80C4E9; -fx-border-width: 0px 0px 2px 0px;" />
+         </children>
+      </AnchorPane>
+   </right>
+   <left>
+      <AnchorPane prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: #80c4e9;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="220.0" fitWidth="220.0" layoutX="65.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/images/IconPenyelam.jfif" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="55.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ocean Expedition">
+               <font>
+                  <Font size="31.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+            </Text>
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>
