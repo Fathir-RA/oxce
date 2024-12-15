@@ -35,10 +35,10 @@
    <right>
       <AnchorPane prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: #FBFBFB;" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="txtIdPenyelam" layoutX="69.0" layoutY="205.0" prefWidth="250.0" promptText="ID User" style="-fx-background-color: transparent; -fx-border-color: #80C4E9; -fx-border-width: 0px 0px 2px 0px;" />
-            <PasswordField fx:id="txtPassword" layoutX="70.0" layoutY="239.0" prefWidth="250.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #80C4E9; -fx-border-width: 0px 0px 2px 0px;" />
-            <Button fx:id="btnLogin" layoutX="161.0" layoutY="316.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: #80C4E9; -fx-text-fill: white;" text="Login" />
-            <Hyperlink fx:id="linkRegister" layoutX="157.0" layoutY="447.0" text="Register" onAction="#handleRegisterAction" />
+            <TextField fx:id="txtIdPenyelam" layoutX="48.0" layoutY="196.0" prefHeight="35.0" prefWidth="251.0" promptText="ID User" style="-fx-background-color: transparent; -fx-border-color: #80C4E9; -fx-border-width: 0px 0px 2px 0px;" />
+            <PasswordField fx:id="txtPassword" layoutX="48.0" layoutY="239.0" prefHeight="35.0" prefWidth="255.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #80C4E9; -fx-border-width: 0px 0px 2px 0px;" />
+            <Button fx:id="btnLogin" layoutX="144.0" layoutY="310.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="22.0" prefWidth="63.0" style="-fx-background-color: #80C4E9; -fx-text-fill: white;" stylesheets="@../css/Button.css" text="Login" />
+            <Hyperlink fx:id="linkRegister" layoutX="143.0" layoutY="438.0" onAction="#handleRegisterAction" stylesheets="@../css/Button.css" text="Register" />
             <Text fill="#80c4e9" layoutX="21.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Back,">
                <font>
                   <Font name="Impact" size="25.0" />
