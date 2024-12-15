@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 
 public class LihatTiketController {
@@ -44,8 +45,16 @@ public class LihatTiketController {
     private TableColumn<PesanTiket, Double> totalHargaColumn;
 
     @FXML
-    private Button kembaliButton;
+    private Button btnDestinasi;
+    
+    @FXML
+    private Button btnBeranda;
+    
+    @FXML
+    private Button btnLogOut;
 
+    @FXML
+    private Button btnPesan;
     @FXML
     private void initialize() {
         // Inisialisasi kolom dengan PropertyValueFactory
@@ -68,20 +77,59 @@ public class LihatTiketController {
             tiketTable.getItems().addAll(tiketList);
         }
     }
+    
+    @FXML
+    private void handleLihatDestinasiAction(ActionEvent event) {
+        // Tindakan ketika link Lihat Destinasi diklik
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Destinasi.fxml")); // Ganti dengan path yang sesuai
+            Parent destinasiRoot = loader.load();
+            Scene destinasiScene = new Scene(destinasiRoot);
+
+            Stage currentStage = (Stage) btnDestinasi.getScene().getWindow();
+            currentStage.setScene(destinasiScene);
+            currentStage.setTitle("Destinasi");
+        } catch (IOException e) {
+            e.printStackTrace();
+            showError("Error loading Destinasi: " + e.getMessage());
+        }
+    }
 
     @FXML
-    private void handleKembaliAction() {
+    private void handleBerandaAction(ActionEvent event) {
+        // Tindakan ketika link Lihat Tiket Saya diklik
         try {
-            // Muat file FXML Home
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Beranda.fxml"));
-            Parent root = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Beranda.fxml")); // Ganti dengan path yang sesuai
+            Parent lihatTiketRoot = loader.load();
+            Scene lihatTiketScene = new Scene(lihatTiketRoot);
 
-            // Ganti scene ke Home.fxml
-            Stage stage = (Stage) kembaliButton.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
+            Stage currentStage = (Stage) btnBeranda.getScene().getWindow();
+            currentStage.setScene(lihatTiketScene);
+            currentStage.setTitle("Lihat Tiket");
         } catch (IOException e) {
-            System.err.println("Error kembali ke Home: " + e.getMessage());
+            e.printStackTrace();
+            showError("Error loading Lihat Tiket: " + e.getMessage());
         }
+    }
+
+    @FXML
+    private void handleLogOutAction(ActionEvent event) {
+        // Tindakan ketika tombol Pesan Sekarang diklik
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml")); // Ganti dengan path yang sesuai
+            Parent pesanTiketRoot = loader.load();
+            Scene pesanTiketScene = new Scene(pesanTiketRoot);
+
+            Stage currentStage = (Stage) btnLogOut.getScene().getWindow();
+            currentStage.setScene(pesanTiketScene);
+            currentStage.setTitle("Pesan Tiket");
+        } catch (IOException e) {
+            e.printStackTrace();
+            showError("Error loading Pesan Tiket: " + e.getMessage());
+        }
+    }
+
+    private void showError(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
