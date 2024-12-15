@@ -14,13 +14,13 @@ import javafx.scene.Parent;
 public class BerandaController {
 
     @FXML
-    private Hyperlink linkLogOut;
-
+    private Button btnDestinasi;
+    
     @FXML
-    private Hyperlink linkLihatDestinasi;
-
+    private Button btnLihatTiket;
+    
     @FXML
-    private Hyperlink linkLihatTiketSaya;
+    private Button btnLogOut;
 
     @FXML
     private Button btnPesan;
@@ -33,7 +33,7 @@ public class BerandaController {
             Parent loginRoot = loader.load();
             Scene loginScene = new Scene(loginRoot);
 
-            Stage currentStage = (Stage) linkLogOut.getScene().getWindow();
+            Stage currentStage = (Stage) btnLogOut.getScene().getWindow();
             currentStage.setScene(loginScene);
             currentStage.setTitle("Login");
         } catch (IOException e) {
@@ -50,7 +50,7 @@ public class BerandaController {
             Parent destinasiRoot = loader.load();
             Scene destinasiScene = new Scene(destinasiRoot);
 
-            Stage currentStage = (Stage) linkLihatDestinasi.getScene().getWindow();
+            Stage currentStage = (Stage) btnDestinasi.getScene().getWindow();
             currentStage.setScene(destinasiScene);
             currentStage.setTitle("Destinasi");
         } catch (IOException e) {
@@ -60,14 +60,14 @@ public class BerandaController {
     }
 
     @FXML
-    private void handleLihatTiketSayaAction(ActionEvent event) {
+    private void handleLihatTiketAction(ActionEvent event) {
         // Tindakan ketika link Lihat Tiket Saya diklik
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LihatTiket.fxml")); // Ganti dengan path yang sesuai
             Parent lihatTiketRoot = loader.load();
             Scene lihatTiketScene = new Scene(lihatTiketRoot);
 
-            Stage currentStage = (Stage) linkLihatTiketSaya.getScene().getWindow();
+            Stage currentStage = (Stage) btnLihatTiket.getScene().getWindow();
             currentStage.setScene(lihatTiketScene);
             currentStage.setTitle("Lihat Tiket");
         } catch (IOException e) {
