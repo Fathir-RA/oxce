@@ -1,0 +1,21 @@
+.nav-button {
+        -fx-background-color: transparent;
+        -fx-text-fill: white;
+        -fx-font-size: 16px;
+        -fx-padding: 5 10 5 10;
+        -fx-border-radius: 5;
+        -fx-background-radius: 5;
+        -fx-transition: 0.3s;
+    }
+
+    .nav-button:hover {
+        -fx-background-color: #3355FF;
+        -fx-text-fill: white;
+        -fx-cursor: hand;
+        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0.5, 0, 0);
+    }
+
+    .nav-button:pressed {
+        -fx-background-color: #667DFF;
+        -fx-text-fill: white;
+    }
