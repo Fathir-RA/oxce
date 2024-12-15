@@ -18,7 +18,7 @@ import javafx.scene.Parent;
 public class RegisterController {
 
     @FXML
-    private Button loginButton; // Tombol Daftar
+    private Button btnDaftar; // Tombol Daftar
     @FXML
     private TextField idUserField; // Field ID User
     @FXML
@@ -58,7 +58,7 @@ public class RegisterController {
             Parent loginRoot = loader.load();
             Scene loginScene = new Scene(loginRoot);
 
-            Stage currentStage = (Stage) loginButton.getScene().getWindow();
+            Stage currentStage = (Stage) btnDaftar.getScene().getWindow();
             currentStage.setScene(loginScene);
             currentStage.setTitle("Login");
         } catch (IOException e) {
