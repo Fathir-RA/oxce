@@ -1,0 +1,77 @@
+/* Style for the Login button */
+#btnLogin {
+    -fx-background-color: #80C4E9;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 1);
+    -fx-transition: 0.3s ease-in-out;
+}
+
+#btnLogin:hover {
+    -fx-background-color: #5aaed8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 8, 0, 0, 3);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+
+}
+
+#btnLogin:pressed {
+    -fx-background-color: #4791b8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 5);
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+
+}
+
+/* Style for the Register hyperlink */
+#linkRegister {
+    -fx-text-fill: #80C4E9;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-underline: true;
+    -fx-transition: 0.3s ease-in-out;
+}
+
+#linkRegister:hover {
+    -fx-text-fill: #5aaed8;
+    -fx-font-weight: bold;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+
+}
+
+#linkRegister:pressed {
+    -fx-text-fill: #4791b8;
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+
+}
+
+/* Style for the Register button */
+#btnDaftar {
+    -fx-background-color: #80C4E9;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 1);
+    -fx-transition: 0.3s ease-in-out;
+}
+
+#btnDaftar:hover {
+    -fx-background-color: #5aaed8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 8, 0, 0, 3);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+
+}
+
+#btnDaftar:pressed {
+    -fx-background-color: #4791b8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 5);
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+
+}
