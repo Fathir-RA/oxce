@@ -1,39 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.mycompany.ocxe.Controller.PesanTiketController">
+<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ocxe.Controller.PesanTiketController">
     <children>
-        <Label layoutX="20.0" layoutY="20.0" text="Pemesanan Tiket" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
-        
-        <!-- ID Penyelam -->
-        <Label layoutX="20.0" layoutY="80.0" text="ID Penyelam:" />
-        <TextField fx:id="txtIdPenyelam" layoutX="150.0" layoutY="75.0" prefWidth="200.0" />
-        
-        <!-- Destinasi -->
-        <Label layoutX="20.0" layoutY="130.0" text="Destinasi:" />
-        <ComboBox fx:id="cbDestinasi" layoutX="150.0" layoutY="125.0" prefWidth="200.0" />
-        
-        <!-- Tanggal -->
-        <Label layoutX="20.0" layoutY="180.0" text="Tanggal:" />
-        <DatePicker fx:id="dateTanggal" layoutX="150.0" layoutY="175.0" prefWidth="200.0" />
-        
-        <!-- Waktu -->
-        <Label layoutX="20.0" layoutY="230.0" text="Sesi Waktu:" />
-        <ComboBox fx:id="cbWaktu" layoutX="150.0" layoutY="225.0" prefWidth="200.0" />
-        
-        <!-- Jumlah Tiket -->
-        <Label layoutX="20.0" layoutY="280.0" text="Jumlah Tiket:" />
-        <Spinner fx:id="spQuantity" layoutX="150.0" layoutY="275.0" prefWidth="100.0" />
-        
-        <!-- Tombol Pesan -->
-        <Button fx:id="btnPesan" layoutX="150.0" layoutY="340.0" prefWidth="100.0" text="Pesan Tiket" />
-        
-        <!-- Tombol Kembali -->
-        <Button fx:id="btnKembali" layoutX="20.0" layoutY="450.0" prefWidth="100.0" text="Kembali" />
+        <Label layoutX="200" layoutY="20" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Pesan Tiket" />
 
-        <!-- Label output -->
-        <Label fx:id="lblOutput" layoutX="20.0" layoutY="400.0" textFill="red" />
+        <Label layoutX="50" layoutY="80" text="Destinasi" />
+        <ComboBox fx:id="cbDestinasi" layoutX="180" layoutY="80" prefWidth="200" />
+
+        <Label layoutX="50" layoutY="120" text="Tanggal" />
+        <DatePicker fx:id="dateTanggal" layoutX="180" layoutY="120" prefWidth="200" />
+
+        <Label layoutX="50" layoutY="160" text="Waktu" />
+        <ComboBox fx:id="cbWaktu" layoutX="180" layoutY="160" prefWidth="200" />
+
+        <Label layoutX="50" layoutY="200" text="Jumlah Tiket" />
+        <Spinner fx:id="spQuantity" layoutX="180" layoutY="200" prefWidth="200" />
+
+        <Label layoutX="50" layoutY="240" text="Total Harga" />
+        <Label fx:id="lblTotalHarga" layoutX="180" layoutY="240" prefWidth="200" style="-fx-font-weight: bold;" text="Rp 0" />
+
+        <Button fx:id="btnPesan" layoutX="180" layoutY="280" prefWidth="200" text="Pesan Tiket" />
+        <Button fx:id="btnKembali" layoutX="35.0" layoutY="437.0" prefHeight="17.0" prefWidth="100.0" text="Kembali" />
     </children>
 </AnchorPane>
