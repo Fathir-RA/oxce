@@ -4,11 +4,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 
 <AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ocxe.Controller.LihatTiketController">
     <!-- Navbar -->
@@ -18,7 +17,7 @@
         
         <!-- Right Side Navbar Buttons -->
         <HBox alignment="CENTER_RIGHT" prefHeight="83.0" prefWidth="505.0" spacing="10.0" stylesheets="@../css/Navbar.css" HBox.hgrow="ALWAYS">
-            <Button fx:id="btnBeranda" onAction="#handleBerandaAction" prefHeight="50.0" prefWidth="120.0" styleClass="nav-button" text="Beranda" alignment="CENTER_LEFT">
+            <Button fx:id="btnBeranda" alignment="CENTER_LEFT" onAction="#handleBerandaAction" prefHeight="50.0" prefWidth="120.0" styleClass="nav-button" text="Beranda">
                 <graphic>
                     <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                         <image>
@@ -28,7 +27,7 @@
                 </graphic>
             </Button>
 
-            <Button fx:id="btnLihatTiket" prefHeight="50.0" prefWidth="130.0" styleClass="nav-button" text="Lihat Tiket" alignment="CENTER_LEFT">
+            <Button fx:id="btnLihatTiket" alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="130.0" styleClass="nav-button" text="Lihat Tiket">
                 <graphic>
                     <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                         <image>
@@ -38,7 +37,7 @@
                 </graphic>
             </Button>
 
-            <Button fx:id="btnDestinasi" onAction="#handleLihatDestinasiAction" prefHeight="50.0" prefWidth="120.0" styleClass="nav-button" text="Destinasi" alignment="CENTER_LEFT">
+            <Button fx:id="btnDestinasi" alignment="CENTER_LEFT" onAction="#handleLihatDestinasiAction" prefHeight="50.0" prefWidth="120.0" styleClass="nav-button" text="Destinasi">
                 <graphic>
                     <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                         <image>
@@ -48,7 +47,7 @@
                 </graphic>
             </Button>
 
-            <Button fx:id="btnLogOut" onAction="#handleLogOutAction" prefHeight="50.0" prefWidth="120.0" styleClass="nav-button" text="Log Out" alignment="CENTER_LEFT">
+            <Button fx:id="btnLogOut" alignment="CENTER_LEFT" onAction="#handleLogOutAction" prefHeight="50.0" prefWidth="120.0" styleClass="nav-button" text="Log Out">
                 <graphic>
                     <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                         <image>
@@ -62,14 +61,13 @@
     </HBox>
 
     <!-- Tabel untuk menampilkan tiket -->
-    <TableView fx:id="tiketTable" layoutX="7.0" layoutY="94.0" prefHeight="313.0" prefWidth="686.0">
+    <TableView fx:id="tiketTable" layoutX="33.0" layoutY="94.0" prefHeight="313.0" prefWidth="635.0">
         <columns>
             <TableColumn fx:id="idTiketColumn" prefWidth="87.0" text="ID Tiket" />
             <TableColumn fx:id="tanggalColumn" prefWidth="133.0" text="Tanggal" />
             <TableColumn fx:id="idDestinasiColumn" prefWidth="127.0" text="Destinasi" />
             <TableColumn fx:id="waktuColumn" prefWidth="99.0" text="Waktu" />
             <TableColumn fx:id="quantityColumn" prefWidth="88.0" text="Quantity" />
-            <TableColumn fx:id="hargaColumn" prefWidth="166.0" text="Harga" />
             <TableColumn fx:id="totalHargaColumn" prefWidth="100.0" text="Total Harga" />
         </columns>
     </TableView>
