@@ -16,9 +16,6 @@ import java.time.LocalDate;
 public class PesanTiketController {
 
     @FXML
-    private TextField txtIdPenyelam;
-
-    @FXML
     private ComboBox<String> cbDestinasi;
 
     @FXML
@@ -37,7 +34,7 @@ public class PesanTiketController {
     private Button btnKembali;
 
     @FXML
-    private Label lblOutput;
+    private Label lblTotalHarga;
 
     private final PesanTiketDAO tiketDAO = new PesanTiketDAO();
 
@@ -45,118 +42,111 @@ public class PesanTiketController {
     public void initialize() {
         // Tambahkan opsi ke ComboBox destinasi
         cbDestinasi.getItems().addAll(
-            "1 - Pulau A (Rp 500.000)", 
-            "2 - Pulau B (Rp 750.000)", 
-            "3 - Pulau C (Rp 1.000.000)"
+            "Pulau A - Rp 500.000", 
+            "Pulau B - Rp 750.000", 
+            "Pulau C - Rp 1.000.000"
         );
 
-        // Tambahkan opsi ke ComboBox waktu sesi
-        cbWaktu.getItems().addAll("1 - Pagi", "2 - Siang", "3 - Sore");
+        // Tambahkan opsi ke ComboBox waktu
+        cbWaktu.getItems().addAll("Pagi", "Siang", "Sore");
 
         // Atur nilai default Spinner untuk jumlah tiket (1-4)
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 4, 1);
         spQuantity.setValueFactory(valueFactory);
 
-        // Tambahkan event listener pada tombol Pesan
-        btnPesan.setOnAction(event -> pesanTiket());
+        // Event listener untuk mengupdate total harga
+        cbDestinasi.setOnAction(event -> updateTotalHarga());
+        spQuantity.valueProperty().addListener((obs, oldValue, newValue) -> updateTotalHarga());
 
-        // Tambahkan event listener pada tombol Kembali
+        btnPesan.setOnAction(event -> pesanTiket());
         btnKembali.setOnAction(event -> navigateToBeranda());
     }
 
     private void pesanTiket() {
         try {
-            // Ambil input dari form
-            int idPenyelam = Integer.parseInt(txtIdPenyelam.getText().trim());
-            String selectedDestinasi = cbDestinasi.getValue();
-            LocalDate selectedDate = dateTanggal.getValue();
-            String selectedWaktu = cbWaktu.getValue();
+            // Mengambil ID penyelam dari LoginController
+            int idPenyelam = LoginController.idPenyelamLogin;
+            int idDestinasi = cbDestinasi.getSelectionModel().getSelectedIndex() + 1;
+            LocalDate tanggal = dateTanggal.getValue();
+            int waktu = cbWaktu.getSelectionModel().getSelectedIndex() + 1;
             int quantity = spQuantity.getValue();
 
-            // Validasi input
-            if (selectedDestinasi == null || selectedDate == null || selectedWaktu == null) {
-                lblOutput.setText("Harap lengkapi semua input!");
+            if (idDestinasi == 0 || tanggal == null || waktu == 0) {
+                showError("Harap lengkapi semua input!");
                 return;
             }
 
-            // Konversi data
-            int idDestinasi = Character.getNumericValue(selectedDestinasi.charAt(0));
-            int waktu = Character.getNumericValue(selectedWaktu.charAt(0));
-            Date tanggal = Date.valueOf(selectedDate);
-
-            // Hitung harga berdasarkan destinasi
-            int harga;
-            switch (idDestinasi) {
-                case 1:
-                    harga = 500000;
-                    break;
-                case 2:
-                    harga = 750000;
-                    break;
-                case 3:
-                    harga = 1000000;
-                    break;
-                default:
-                    lblOutput.setText("Destinasi tidak valid!");
-                    return;
-            }
-
-            // Buat objek PesanTiket
-            PesanTiket tiket = new PesanTiket(
-                generateIdTiket(), 
-                idPenyelam, 
-                idDestinasi, 
-                tanggal, 
-                waktu, 
-                quantity, 
-                harga, 
-                null
-            );
-
-            // Simpan ke database
+            int harga = getHargaByIdDestinasi(idDestinasi);
+            // Menghasilkan ID tiket menggunakan metode generateIdTiket
+            int idTiket = generateIdTiket();
+            PesanTiket tiket = new PesanTiket(idTiket, idPenyelam, idDestinasi, Date.valueOf(tanggal), waktu, quantity, harga, null);
             tiketDAO.insertPesanTiket(tiket);
             
             int totalHarga = harga * quantity;
-            lblOutput.setText("Tiket berhasil dipesan! Total Harga: Rp " + totalHarga);
-
-            // Reset form
+            showSuccess("Tiket berhasil dipesan! Total Harga: Rp " + totalHarga);
             clearForm();
-
-            // Pindah ke Beranda
-            navigateToBeranda();
-
-        } catch (NumberFormatException e) {
-            lblOutput.setText("ID Penyelam harus berupa angka!");
         } catch (Exception e) {
-            lblOutput.setText("Terjadi kesalahan: " + e.getMessage());
+            showError("Terjadi kesalahan: " + e.getMessage());
         }
+    }
+
+    private void updateTotalHarga() {
+        try {
+            int idDestinasi = cbDestinasi.getSelectionModel().getSelectedIndex() + 1;
+            int harga = getHargaByIdDestinasi(idDestinasi);
+            int quantity = spQuantity.getValue();
+            int totalHarga = harga * quantity;
+            lblTotalHarga.setText("Rp " + totalHarga);
+        } catch (Exception e) {
+            lblTotalHarga.setText("Rp 0");
+        }
+    }
+
+    private int getHargaByIdDestinasi(int idDestinasi) {
+        switch (idDestinasi) {
+            case 1: return 500000;
+            case 2: return 750000;
+            case 3: return 1000000;
+            default: return 0;
+        }
+    }
+
+    private void clearForm() {
+        cbDestinasi.setValue(null);
+        dateTanggal.setValue(null);
+        cbWaktu.setValue(null);
+        spQuantity.getValueFactory().setValue(1);
+        lblTotalHarga.setText("Rp 0");
     }
 
     private void navigateToBeranda() {
         try {
-            // Muat file FXML beranda
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Beranda.fxml"));
             Parent root = loader.load();
-
-            // Ganti scene dengan Beranda.fxml
             Stage stage = (Stage) btnKembali.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
-            lblOutput.setText("Gagal kembali ke Beranda: " + e.getMessage());
+            showError("Gagal kembali ke Beranda: " + e.getMessage());
         }
     }
-
+    
     private int generateIdTiket() {
         // ID acak untuk simulasi
         return (int) (Math.random() * 100000);
     }
 
-    private void clearForm() {
-        txtIdPenyelam.clear();
-        cbDestinasi.setValue(null);
-        dateTanggal.setValue(null);
-        cbWaktu.setValue(null);
-        spQuantity.getValueFactory().setValue(1);
+    private void showError(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void showSuccess(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Sukses");
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
