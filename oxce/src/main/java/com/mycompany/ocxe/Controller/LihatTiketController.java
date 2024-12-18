@@ -2,6 +2,7 @@ package com.mycompany.ocxe.Controller;
 
 import com.mycompany.ocxe.DAO.PesanTiketDAO;
 import com.mycompany.ocxe.Model.PesanTiket;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -39,9 +40,6 @@ public class LihatTiketController {
     private TableColumn<PesanTiket, Integer> quantityColumn;
 
     @FXML
-    private TableColumn<PesanTiket, Double> hargaColumn;
-
-    @FXML
     private TableColumn<PesanTiket, Double> totalHargaColumn;
 
     @FXML
@@ -54,16 +52,26 @@ public class LihatTiketController {
     private Button btnLogOut;
 
     @FXML
-    private Button btnPesan;
-    @FXML
     private void initialize() {
         // Inisialisasi kolom dengan PropertyValueFactory
         idTiketColumn.setCellValueFactory(new PropertyValueFactory<>("idTiket"));
         tanggalColumn.setCellValueFactory(new PropertyValueFactory<>("tanggal"));
-        idDestinasiColumn.setCellValueFactory(new PropertyValueFactory<>("idDestinasi"));
-        waktuColumn.setCellValueFactory(new PropertyValueFactory<>("waktu"));
+        
+        // Menggunakan converter untuk menampilkan nama destinasi
+        idDestinasiColumn.setCellValueFactory(cellData -> {
+            int idDestinasi = cellData.getValue().getIdDestinasi();
+            String destinasi = getDestinasiById(idDestinasi);
+            return new SimpleStringProperty(destinasi);
+        });
+        
+        // Menggunakan converter untuk menampilkan waktu
+        waktuColumn.setCellValueFactory(cellData -> {
+            int waktu = cellData.getValue().getWaktu();
+            String waktuString = getWaktuById(waktu);
+            return new SimpleStringProperty(waktuString);
+        });
+
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        hargaColumn.setCellValueFactory(new PropertyValueFactory<>("harga"));
         totalHargaColumn.setCellValueFactory(new PropertyValueFactory<>("totalHarga"));
 
         // Tampilkan data tiket
@@ -78,6 +86,27 @@ public class LihatTiketController {
         }
     }
     
+    // Metode untuk mendapatkan nama destinasi berdasarkan ID
+    private String getDestinasiById(int idDestinasi) {
+        switch (idDestinasi) {
+            case 1: return "Pulau A";
+            case 2: return "Pulau B";
+            case 3: return "Pulau C";
+            default: return "Tidak Diketahui";
+        }
+    }
+
+    // Metode untuk mendapatkan nama waktu berdasarkan ID
+    private String getWaktuById(int waktu) {
+        switch (waktu) {
+            case 1: return "Pagi";
+            case 2: return "Siang";
+            case 3: return "Sore";
+            default: return "Tidak Diketahui";
+        }
+    }
+
+   
     @FXML
     private void handleLihatDestinasiAction(ActionEvent event) {
         // Tindakan ketika link Lihat Destinasi diklik
