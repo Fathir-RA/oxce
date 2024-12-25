@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ocxe.Controller.BerandaAdminController">
+   <children>
+      <TabPane prefHeight="500.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+            <Tab text="Beranda">
+                <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="btnLogOut" layoutX="595.0" layoutY="419.0" mnemonicParsing="false" onAction="#hadleLogOutAction" prefHeight="38.0" prefWidth="85.0" text="Log Out" />
+                     </children>
+                </AnchorPane>
+                </content>
+            </Tab>
+            <Tab text="Lihat Jadwal">
+                <content>
+                    <AnchorPane prefHeight="400.0" prefWidth="600.0">
+                        <children>
+                            <TableView fx:id="tiketTable" layoutX="12.0" layoutY="140.0" prefHeight="280.0" prefWidth="677.0">
+                                <columns>
+                                    <TableColumn fx:id="idTiketColumn" prefWidth="85.0" text="ID Tiket" />
+                                    <TableColumn fx:id="namaPenyelamColumn" prefWidth="137.0" text="Nama Penyelam" /> <!-- Kolom untuk Nama Penyelam -->
+                                    <TableColumn fx:id="tanggalColumn" prefWidth="128.0" text="Tanggal" />
+                                    <TableColumn fx:id="idDestinasiColumn" prefWidth="126.0" text="Destinasi" />
+                                    <TableColumn fx:id="waktuColumn" prefWidth="92.0" text="Waktu" />
+                                    <TableColumn fx:id="quantityColumn" prefWidth="132.0" text="Jumlah Tiket" />
+                                    <TableColumn fx:id="totalHargaColumn" prefWidth="100.0" text="Total Harga" />
+                                </columns>
+                            </TableView>
+                        <ComboBox fx:id="destinasiComboBox" layoutX="228.0" layoutY="26.0" onAction="#handleFilterChange" prefWidth="150.0" />
+                        <DatePicker fx:id="tanggalDatePicker" layoutX="228.0" layoutY="67.0" onAction="#handleFilterChange" />
+                        <Label layoutX="29.0" layoutY="25.0" prefHeight="27.0" prefWidth="111.0" text="Cari berdasarkan :" />
+                        <Label alignment="CENTER" layoutX="141.0" layoutY="25.0" prefHeight="27.0" prefWidth="74.0" text="Destinasi" />
+                        <Label alignment="CENTER" layoutX="148.0" layoutY="66.0" prefHeight="27.0" prefWidth="60.0" text="Tanggal" />
+                        <Button fx:id="btnReset" layoutX="363.0" layoutY="108.0" mnemonicParsing="false" onAction="#handleResetAction" text="Reset" />
+
+                        </children>
+                    </AnchorPane>
+                </content>
+            </Tab>
+            <Tab text="Tambahkan Pendamping">
+                <content>
+                    <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml">
+                        <children>
+                        <Label layoutX="13.0" layoutY="14.0" prefHeight="27.0" prefWidth="246.0" text="Menambahkan akun pendamping">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                            <TextField fx:id="idPendampingField" layoutX="300.0" layoutY="69.0" prefWidth="200.0" promptText="ID Pendamping" />
+                            <TextField fx:id="namaField" layoutX="300.0" layoutY="118.0" prefWidth="200.0" promptText="Nama Lengkap" />
+                            <TextField fx:id="umurField" layoutX="300.0" layoutY="171.0" prefWidth="200.0" promptText="Umur" />
+                            <TextField fx:id="alamatField" layoutX="300.0" layoutY="223.0" prefWidth="200.0" promptText="Alamat" />
+                            <TextField fx:id="noHpField" layoutX="300.0" layoutY="277.0" prefWidth="200.0" promptText="No HP" />
+                            <PasswordField fx:id="passwordField" layoutX="300.0" layoutY="332.0" prefWidth="200.0" promptText="Password" />
+                            <Button fx:id="btnDaftarPendamping" layoutX="331.0" layoutY="385.0" onAction="#handleRegisterPendamping" text="Daftarkan Pendamping" />
+                        <Label alignment="CENTER" layoutX="107.0" layoutY="69.0" prefHeight="26.0" prefWidth="169.0" text="Masukkan id pendamping" />
+                        <Label alignment="CENTER" layoutX="107.0" layoutY="171.0" prefHeight="26.0" prefWidth="169.0" text="Masukkan umur pendamping" />
+                        <Label alignment="CENTER" layoutX="107.0" layoutY="118.0" prefHeight="26.0" prefWidth="169.0" text="Masukkan nama pendamping" />
+                        <Label alignment="CENTER" layoutX="107.0" layoutY="223.0" prefHeight="26.0" prefWidth="169.0" text="Masukkan alamat " />
+                        <Label alignment="CENTER" layoutX="107.0" layoutY="277.0" prefHeight="26.0" prefWidth="169.0" text="Masukkan nomor HP" />
+                        <Label alignment="CENTER" layoutX="107.0" layoutY="332.0" prefHeight="26.0" prefWidth="169.0" text="Masukkan Password " />
+                        </children>
+                    </AnchorPane>
+                </content>
+            </Tab>
+
+            <Tab text="Tambahkan Destinasi">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
