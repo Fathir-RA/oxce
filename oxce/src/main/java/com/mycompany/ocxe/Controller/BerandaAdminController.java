@@ -4,29 +4,38 @@ import com.mycompany.ocxe.DAO.PenyelamDAO;
 import com.mycompany.ocxe.DAO.PesanTiketDAO;
 import com.mycompany.ocxe.Model.Penyelam;
 import com.mycompany.ocxe.Model.PesanTiket;
-import java.io.IOException;
-import java.sql.Date;
-import java.util.List;
-import java.util.stream.Collectors;
-import javafx.beans.property.SimpleStringProperty;
+import com.mycompany.ocxe.DAO.DestinasiDAO;
+import com.mycompany.ocxe.Model.Destinasi;
+import java.io.ByteArrayInputStream;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.sql.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.control.TableCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import java.io.ByteArrayInputStream;
+
 public class BerandaAdminController {
-    
+
     @FXML
     private Button btnLogOut;
     @FXML
@@ -43,38 +52,44 @@ public class BerandaAdminController {
     private PasswordField passwordField; // Field Password
     @FXML
     private Button btnDaftarPendamping; // Tombol Daftar Pendamping
-     @FXML
+    @FXML
     private TableView<PesanTiket> tiketTable;
 
     @FXML
     private TableColumn<PesanTiket, Integer> idTiketColumn;
-    
     @FXML
     private TableColumn<PesanTiket, String> namaPenyelamColumn; // Kolom untuk Nama Penyelam
-
     @FXML
     private TableColumn<PesanTiket, Date> tanggalColumn;
-
     @FXML
     private TableColumn<PesanTiket, String> idDestinasiColumn;
-
     @FXML
     private TableColumn<PesanTiket, String> waktuColumn;
-
     @FXML
     private TableColumn<PesanTiket, Integer> quantityColumn;
-
     @FXML
     private TableColumn<PesanTiket, Double> totalHargaColumn;
-    
+
     @FXML
     private Button btnReset; // Tambahkan ini untuk tombol reset
 
-
-    private final PesanTiketDAO tiketDAO = new PesanTiketDAO();
-    
     @FXML
-    private TableColumn<PesanTiket, String> namaColumn;  // Kolom untuk nama pemesan
+    private TextField namaDestinasiField, kategoriField, gambarField;
+
+    @FXML
+    private TableView<Destinasi> destinasiTable;
+
+    @FXML
+    private TableColumn<Destinasi, Integer> idColumn;
+    @FXML
+    private TableColumn<Destinasi, byte[]> namaColumn, kategoriColumn, gambarColumn;
+
+    @FXML
+    private Button btnTambah, btnPerbarui, btnHapus;
+    
+    private final PesanTiketDAO tiketDAO = new PesanTiketDAO();
+    private final DestinasiDAO destinasiDAO = new DestinasiDAO();
+    private ObservableList<Destinasi> destinasiList;
 
     @FXML
     private ComboBox<String> destinasiComboBox; // ComboBox untuk memilih destinasi
@@ -95,10 +110,162 @@ public class BerandaAdminController {
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         totalHargaColumn.setCellValueFactory(new PropertyValueFactory<>("totalHargaProperty"));
 
-        // Memuat data awal
-        loadTiketData();
+        // Inisialisasi kolom tabel destinasi
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("idDestinasi"));
+        namaColumn.setCellValueFactory(new PropertyValueFactory<>("nama"));
+        kategoriColumn.setCellValueFactory(new PropertyValueFactory<>("kategori")); // Hapus spasi ekstra
+
+        // Menggunakan ImageTableCell untuk kolom gambar
+        gambarColumn.setCellFactory(column -> new ImageTableCell());
+        // Pastikan cellValueFactory untuk gambarColumn mengembalikan byte array
+        gambarColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getGambar()));
+
+        
+        // Menggunakan converter untuk menampilkan nama destinasi
+        idDestinasiColumn.setCellValueFactory(cellData -> {
+            int idDestinasi = cellData.getValue().getIdDestinasi();
+            String destinasi = getDestinasiById(idDestinasi);
+            return new SimpleStringProperty(destinasi);
+        });
+
+        // Menggunakan converter untuk menampilkan waktu
+        waktuColumn.setCellValueFactory(cellData -> {
+            int waktu = cellData.getValue().getWaktu();
+            String waktuString = getWaktuById(waktu);
+            return new SimpleStringProperty(waktuString);
+        });
+
+        loadDestinasiData();
+        loadDestinasiToComboBox();
+
+        // Menambahkan listener untuk tabel destinasi
+        destinasiTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                fillDestinasiFields(newValue);
+            }
+        });
+    }
+    
+        public class ImageTableCell extends TableCell<Destinasi, byte[]> {
+        @Override
+        protected void updateItem(byte[] item, boolean empty) {
+            super.updateItem(item, empty);
+            if (empty || item == null) {
+                setGraphic(null);
+            } else {
+                Image image = new Image(new ByteArrayInputStream(item));
+                ImageView imageView = new ImageView(image);
+                imageView.setFitWidth(100); // Set width
+                imageView.setFitHeight(100); // Set height
+                setGraphic(imageView);
+            }
+        }
     }
 
+    private void loadDestinasiToComboBox() {
+        destinasiList = FXCollections.observableArrayList(destinasiDAO.getAllDestinasi());
+        destinasiComboBox.getItems().clear();
+        destinasiList.forEach(destinasi -> destinasiComboBox.getItems().add(destinasi.getNama ()));
+    }
+
+    private void fillDestinasiFields(Destinasi destinasi) {
+        namaDestinasiField.setText(destinasi.getNama());
+        kategoriField.setText(destinasi.getKategori());
+        gambarField.setText(destinasi.getGambar() != null ? "Gambar tersedia" : "Tidak ada gambar");
+    }
+
+    @FXML
+    private void handleTambahDestinasi(ActionEvent event) {
+        String nama = namaDestinasiField.getText();
+        String kategori = kategoriField.getText();
+        String gambarPath = gambarField.getText();
+
+        if (!nama.isEmpty() && !kategori.isEmpty() && !gambarPath.isEmpty()) {
+            byte[] gambar = convertImageToByteArray(gambarPath);
+            Destinasi destinasi = new Destinasi(0, nama, kategori, gambar);
+            destinasiDAO.insertDestinasi(destinasi);
+            loadDestinasiData();
+            resetDestinasiForm();
+        } else {
+            showAlert("Form Tidak Lengkap", "Mohon isi semua field sebelum menambahkan destinasi.");
+        }
+    }
+
+    @FXML
+    private void handlePerbaruiDestinasi(ActionEvent event) {
+        Destinasi selectedDestinasi = destinasiTable.getSelectionModel().getSelectedItem();
+        if (selectedDestinasi != null) {
+            String nama = namaDestinasiField.getText();
+            String kategori = kategoriField.getText();
+            String gambarPath = gambarField.getText();
+
+            if (!nama.isEmpty() && !kategori.isEmpty() && !gambarPath.isEmpty()) {
+                byte[] gambar = convertImageToByteArray(gambarPath);
+                selectedDestinasi.setNama(nama);
+                selectedDestinasi.setKategori(kategori);
+                selectedDestinasi.setGambar(gambar);
+                destinasiDAO.updateDestinasi(selectedDestinasi);
+                loadDestinasiData();
+                resetDestinasiForm();
+            } else {
+                showAlert("Form Tidak Lengkap", "Mohon isi semua field sebelum memperbarui destinasi.");
+            }
+        } else {
+            showAlert("Tidak Ada Data Dipilih", "Pilih destinasi yang ingin diperbarui.");
+        }
+    }
+
+    @FXML
+    private void handleHapusDestinasi(ActionEvent event) {
+        Destinasi selectedDestinasi = destinasiTable.getSelectionModel().getSelectedItem();
+        if (selectedDestinasi != null) {
+            destinasiDAO.deleteDestinasi(selectedDestinasi.getIdDestinasi());
+            loadDestinasiData();
+        } else {
+            showAlert("Tidak Ada Data Dipilih", "Pilih destinasi yang ingin dihapus.");
+        }
+    }
+
+    @FXML
+    private void handleResetFormDestinasi(ActionEvent event) {
+        resetDestinasiForm();
+    }
+
+    @FXML
+    private void handleSelectImage(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+        
+        if (selectedFile != null) {
+            gambarField.setText(selectedFile.getAbsolutePath());
+        }
+    }
+
+    private void loadDestinasiData() {
+        destinasiList = FXCollections.observableArrayList(destinasiDAO.getAllDestinasi());
+        destinasiTable.setItems(destinasiList);
+    }
+
+    private void resetDestinasiForm() {
+        namaDestinasiField.clear();
+        kategoriField.clear();
+        gambarField.clear();
+        destinasiTable.getSelectionModel().clearSelection();
+    }
+
+    private byte[] convertImageToByteArray(String imagePath) {
+        File file = new File(imagePath);
+        byte[] imageBytes = null;
+        try (FileInputStream fis = new FileInputStream(file)) {
+            imageBytes = new byte[(int) file.length()];
+            fis.read(imageBytes);
+        } catch (IOException e) {
+            showAlert("Error", "Gagal mengonversi gambar: " + e.getMessage());
+        }
+        return imageBytes;
+    }
+    
     @FXML
     private void handleFilterChange(ActionEvent event) {
         // Mengambil data filter dari ComboBox dan DatePicker
@@ -113,7 +280,6 @@ public class BerandaAdminController {
             filterTiketData(selectedDestinasi, selectedDate);
         }
     }
-
 
     private void filterTiketData(String destinasi, Date tanggal) {
         List<PesanTiket> tiketList = tiketDAO.getAllTiket();
@@ -143,7 +309,7 @@ public class BerandaAdminController {
         tiketTable.getItems().setAll(tiketList);
     }
 
-    private String convertWaktu(int waktu) {
+    private String getWaktuById(int waktu) {
         // Konversi kode waktu ke string yang dapat dipahami
         switch (waktu) {
             case 1: return "Pagi";
@@ -221,10 +387,12 @@ public class BerandaAdminController {
             showError("Terjadi kesalahan: " + e.getMessage());
         }
     }
+    
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
+        alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
     }
