@@ -30,15 +30,15 @@
                 <content>
                     <AnchorPane prefHeight="400.0" prefWidth="600.0">
                         <children>
-                            <TableView fx:id="tiketTable" layoutX="12.0" layoutY="140.0" prefHeight="280.0" prefWidth="677.0">
+                            <TableView fx:id="tiketTable" layoutX="15.0" layoutY="148.0" prefHeight="280.0" prefWidth="670.0">
                                 <columns>
                                     <TableColumn fx:id="idTiketColumn" prefWidth="85.0" text="ID Tiket" />
                                     <TableColumn fx:id="namaPenyelamColumn" prefWidth="137.0" text="Nama Penyelam" /> <!-- Kolom untuk Nama Penyelam -->
                                     <TableColumn fx:id="tanggalColumn" prefWidth="128.0" text="Tanggal" />
                                     <TableColumn fx:id="idDestinasiColumn" prefWidth="126.0" text="Destinasi" />
                                     <TableColumn fx:id="waktuColumn" prefWidth="92.0" text="Waktu" />
-                                    <TableColumn fx:id="quantityColumn" prefWidth="132.0" text="Jumlah Tiket" />
-                                    <TableColumn fx:id="totalHargaColumn" prefWidth="100.0" text="Total Harga" />
+                                    <TableColumn fx:id="quantityColumn" prefWidth="99.0" text="Jumlah Tiket" />
+                                    <TableColumn fx:id="totalHargaColumn" prefWidth="133.0" text="Total Harga" />
                                 </columns>
                             </TableView>
                         <ComboBox fx:id="destinasiComboBox" layoutX="228.0" layoutY="26.0" onAction="#handleFilterChange" prefWidth="150.0" />
@@ -80,10 +80,39 @@
             </Tab>
 
             <Tab text="Tambahkan Destinasi">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
+                <content>
+                    <AnchorPane prefHeight="500.0" prefWidth="700.0">
+                        <children>
+                            <Label layoutX="20.0" layoutY="20.0" text ="Tambah / Perbarui Destinasi" />
+                            <Label layoutX="20.0" layoutY="60.0" text="Nama Destinasi" />
+                            <TextField fx:id="namaDestinasiField" layoutX="150.0" layoutY="60.0" prefWidth="200.0" />
+
+                            <Label layoutX="20.0" layoutY="100.0" text="Kategori" />
+                            <TextField fx:id="kategoriField" layoutX="150.0" layoutY="100.0" prefWidth="200.0" />
+
+                            <Label layoutX="20.0" layoutY="140.0" text="Gambar" />
+                            <Button layoutX="150.0" layoutY="140.0" text="Pilih Gambar" onAction="#handleSelectImage" />
+                            <TextField fx:id="gambarField" layoutX="250.0" layoutY="140.0" prefWidth="200.0" editable="false" />
+
+                            <Button fx:id="btnTambah" layoutX="20.0" layoutY="180.0" text="Tambah" onAction="#handleTambahDestinasi" />
+                            <Button fx:id="btnPerbarui" layoutX="100.0" layoutY="180.0" text="Perbarui" onAction="#handlePerbaruiDestinasi" />
+                            <Button fx:id="btnResetForm" layoutX="180.0" layoutY="180.0" text="Reset" onAction="#handleResetFormDestinasi" />
+
+                            <TableView fx:id="destinasiTable" layoutX="20.0" layoutY="220.0" prefHeight="250.0" prefWidth="660.0">
+                                <columns>
+                                    <TableColumn fx:id="idColumn" prefWidth="50.0" text="ID" />
+                                    <TableColumn fx:id="namaColumn" prefWidth="150.0" text="Nama Destinasi" />
+                                    <TableColumn fx:id="kategoriColumn" prefWidth="150.0" text="Kategori" />
+                                    <TableColumn fx:id="gambarColumn" prefWidth="150.0" text="Gambar" />
+                                </columns>
+                            </TableView>
+
+                            <Button fx:id="btnHapus" layoutX="550.0" layoutY="480.0" text="Hapus" onAction="#handleHapusDestinasi" />
+                        </children>
+                    </AnchorPane>
+                </content>
             </Tab>
+
         </tabs>
       </TabPane>
    </children>
