@@ -112,7 +112,6 @@
                     </AnchorPane>
                 </content>
             </Tab>
-
         </tabs>
       </TabPane>
    </children>
