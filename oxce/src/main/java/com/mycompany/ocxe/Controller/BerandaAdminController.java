@@ -113,6 +113,12 @@ public class BerandaAdminController {
         waktuColumn.setCellValueFactory(new PropertyValueFactory<>("waktu"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         totalHargaColumn.setCellValueFactory(new PropertyValueFactory<>("totalHargaProperty"));
+        
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id_destinasi"));
+        namaColumn.setCellValueFactory(new PropertyValueFactory<>("nama"));
+        kategoriColumn.setCellValueFactory(new PropertyValueFactory<>("kategori"));
+        gambarColumn.setCellValueFactory(new PropertyValueFactory<>("gambar"));
+
 
         // Menggunakan converter untuk menampilkan waktu
         waktuColumn.setCellValueFactory(cellData -> {
@@ -267,7 +273,7 @@ public class BerandaAdminController {
     }
 
     private void loadDestinasiData() {
-        destinasiList = FXCollections.observableArrayList(Destinasi.getDestinasiOptions());
+        destinasiList = FXCollections.observableArrayList(destinasiDAO.getAllDestinasi());
         destinasiTable.setItems(destinasiList);
     }
 
