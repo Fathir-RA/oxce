@@ -36,6 +36,9 @@ public class PesanTiketController {
     @FXML
     private Label lblTotalHarga;
 
+    @FXML
+    private Label lblOutput;
+
     private final PesanTiketDAO tiketDAO = new PesanTiketDAO();
 
     @FXML
@@ -64,8 +67,7 @@ public class PesanTiketController {
 
     private void pesanTiket() {
         try {
-            // Mengambil ID penyelam dari LoginController
-            int idPenyelam = LoginController.idPenyelamLogin;
+            int idPenyelam = LoginController.idPenyelamLogin; // ID penyelam dari sesi login
             int idDestinasi = cbDestinasi.getSelectionModel().getSelectedIndex() + 1;
             LocalDate tanggal = dateTanggal.getValue();
             int waktu = cbWaktu.getSelectionModel().getSelectedIndex() + 1;
@@ -77,11 +79,18 @@ public class PesanTiketController {
             }
 
             int harga = getHargaByIdDestinasi(idDestinasi);
-            // Menghasilkan ID tiket menggunakan metode generateIdTiket
             int idTiket = generateIdTiket();
             PesanTiket tiket = new PesanTiket(idTiket, idPenyelam, idDestinasi, Date.valueOf(tanggal), waktu, quantity, harga, null);
+
+            // Cek sisa tiket
+            int sisaTiket = tiketDAO.getRemainingTickets(idDestinasi, Date.valueOf(tanggal), waktu);
+            if (quantity > sisaTiket) {
+                showError("Tiket tidak dapat dipesan. Sisa tiket yang tersedia: " + sisaTiket);
+                return;
+            }
+
+            // Masukkan tiket jika kuota mencukupi
             tiketDAO.insertPesanTiket(tiket);
-            
             int totalHarga = harga * quantity;
             showSuccess("Tiket berhasil dipesan! Total Harga: Rp " + totalHarga);
             clearForm();
@@ -130,7 +139,7 @@ public class PesanTiketController {
             showError("Gagal kembali ke Beranda: " + e.getMessage());
         }
     }
-    
+
     private int generateIdTiket() {
         // ID acak untuk simulasi
         return (int) (Math.random() * 100000);
