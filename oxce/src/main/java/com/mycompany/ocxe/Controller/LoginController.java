@@ -23,12 +23,13 @@ public class LoginController {
     private Button btnLogin;
 
     @FXML
-    private Hyperlink linkRegister; // Tambahkan hyperlink untuk register
+    private Hyperlink linkRegister;
 
     @FXML
-    private TextField txtIdPenyelam; // TextField untuk ID Penyelam
+    private TextField txtIdPenyelam;
+
     @FXML
-    private PasswordField txtPassword; // PasswordField untuk Password
+    private PasswordField txtPassword;
 
     private PenyelamDAO penyelamDAO = new PenyelamDAO(); // Inisialisasi DAO
 
@@ -42,24 +43,32 @@ public class LoginController {
         Penyelam penyelam = penyelamDAO.getPenyelam(idPenyelam);
         if (penyelam != null && penyelam.getPassword().equals(password)) {
             // Jika kredensial valid, simpan ID penyelam yang saat ini sedang login
-            try {
-                idPenyelamLogin = Integer.parseInt(penyelam.getIdPenyelam());
-            } catch (NumberFormatException e) {
-                System.out.println("Error: ID penyelam tidak dapat diubah menjadi integer.");
+            idPenyelamLogin = Integer.parseInt(penyelam.getIdPenyelam());
+
+            // Tentukan tampilan berdasarkan role
+            String role = penyelam.getRole();
+            String fxmlFile;
+            if ("penyelam".equalsIgnoreCase(role)) {
+                fxmlFile = "/fxml/Beranda.fxml";
+            } else if ("pendamping".equalsIgnoreCase(role)) {
+                fxmlFile = "/fxml/BerandaAdmin.fxml";
+            } else {
+                showError("Role tidak valid!");
+                return;
             }
 
-            // Pindah ke beranda
+            // Pindah ke tampilan yang sesuai
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/beranda.fxml"));
-                Parent berandaRoot = loader.load();
-                Scene beranda = new Scene(berandaRoot);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
 
                 Stage currentStage = (Stage) btnLogin.getScene().getWindow();
-                currentStage.setScene(beranda);
+                currentStage.setScene(scene);
                 currentStage.setTitle("Beranda");
             } catch (IOException e) {
                 e.printStackTrace();
-                showError("Error loading Beranda: " + e.getMessage());
+                showError("Error loading tampilan: " + e.getMessage());
             }
         } else {
             // Jika kredensial tidak valid, tampilkan pesan kesalahan
@@ -71,7 +80,7 @@ public class LoginController {
     private void handleRegisterAction(ActionEvent event) {
         // Tindakan ketika link register diklik
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/register.fxml")); // Ganti dengan path yang sesuai
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/register.fxml"));
             Parent registerRoot = loader.load();
             Scene registerScene = new Scene(registerRoot);
 
