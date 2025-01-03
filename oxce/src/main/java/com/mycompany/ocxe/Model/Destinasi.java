@@ -1,5 +1,7 @@
 package com.mycompany.ocxe.Model;
 
+import java.util.ArrayList;
+import java.util.List;
 import javafx.beans.property.*;
 
 /**
@@ -53,5 +55,14 @@ public class Destinasi {
 
     public void setGambar(byte[] gambar) {
         this.gambar = gambar;
+    }
+    
+    // Static method to get a list of destinations
+    public static List<Destinasi> getDestinasiOptions() {
+        List<Destinasi> destinasiList = new ArrayList<>();
+        destinasiList.add(new Destinasi(1, "Destinasi A", "Kategori A", null));
+        destinasiList.add(new Destinasi(2, "Destinasi B", "Kategori B", null));
+        destinasiList.add(new Destinasi(3, "Destinasi C", "Kategori C", null));
+        return destinasiList;
     }
 }
