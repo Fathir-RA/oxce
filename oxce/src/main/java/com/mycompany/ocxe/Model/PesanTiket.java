@@ -11,10 +11,24 @@ public class PesanTiket {
     private int quantity;
     private int harga;
     private Integer idPembayaran; // Menggunakan Integer untuk mengakomodasi nilai NULL
+    private String namaPenyelam;
 
     public PesanTiket(int idTiket, int idPenyelam, int idDestinasi, Date tanggal, int waktu, int quantity, int harga, Integer idPembayaran) {
         this.idTiket = idTiket;
         this.idPenyelam = idPenyelam;
+        this.idDestinasi = idDestinasi;
+        this.tanggal = tanggal;
+        this.waktu = waktu;
+        this.quantity = quantity;
+        this.harga = harga;
+        this.idPembayaran = idPembayaran;
+    }
+    
+    // Konstruktor baru dengan nama penyelam
+    public PesanTiket(int idTiket, int idPenyelam, String namaPenyelam, int idDestinasi, Date tanggal, int waktu, int quantity, int harga, Integer idPembayaran) {
+        this.idTiket = idTiket;
+        this.idPenyelam = idPenyelam;
+        this.namaPenyelam = namaPenyelam;
         this.idDestinasi = idDestinasi;
         this.tanggal = tanggal;
         this.waktu = waktu;
@@ -93,6 +107,15 @@ public class PesanTiket {
     // Tambahkan getter untuk totalHarga
     public Double getTotalHargaProperty() {
         return Double.valueOf(getTotalHarga());
+    }
+    
+    // Getter dan setter untuk properti
+    public String getNamaPenyelam() {
+        return namaPenyelam;
+    }
+
+    public void setNamaPenyelam(String namaPenyelam) {
+        this.namaPenyelam = namaPenyelam;
     }
 
     public Integer getIdPembayaran() {
