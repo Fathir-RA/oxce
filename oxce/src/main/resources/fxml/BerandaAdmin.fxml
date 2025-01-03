@@ -52,7 +52,7 @@
                     </AnchorPane>
                 </content>
             </Tab>
-            <Tab text="Tambahkan Pendamping">
+            <Tab text="Tambahkan Akun Pendamping">
                 <content>
                     <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml">
                         <children>
@@ -96,7 +96,8 @@
 
                             <Button fx:id="btnTambah" layoutX="20.0" layoutY="180.0" text="Tambah" onAction="#handleTambahDestinasi" />
                             <Button fx:id="btnPerbarui" layoutX="100.0" layoutY="180.0" text="Perbarui" onAction="#handlePerbaruiDestinasi" />
-                            <Button fx:id="btnResetForm" layoutX="180.0" layoutY="180.0" text="Reset" onAction="#handleResetFormDestinasi" />
+                            <Button fx:id="btnHapusDestinasi" layoutX="180.0" layoutY="180.0" text="Hapus" onAction="#handleHapusDestinasi" />
+                            <Button fx:id="btnResetDestinasi" layoutX="260.0" layoutY="180.0" text="Reset" onAction="#handleResetFormDestinasi" />
 
                             <TableView fx:id="destinasiTable" layoutX="20.0" layoutY="220.0" prefHeight="250.0" prefWidth="660.0">
                                 <columns>
