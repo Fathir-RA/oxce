@@ -19,7 +19,7 @@ public class PenyelamDAO {
 
     // Menambahkan penyelam
     public void insertPenyelam(Penyelam penyelam) {
-        String sql = "INSERT INTO penyelam (id_penyelam, nama, umur, alamat, password, no_hp) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO penyelam (id_penyelam, nama, umur, alamat, password, no_hp, role) VALUES (?, ?, ?, ?, ?, ?, ?)";
         
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -29,6 +29,7 @@ public class PenyelamDAO {
             preparedStatement.setString(4, penyelam.getAlamat());
             preparedStatement.setString(5, penyelam.getPassword());
             preparedStatement.setString(6, penyelam.getNoHp());
+            preparedStatement.setString(7, penyelam.getRole());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -38,7 +39,7 @@ public class PenyelamDAO {
     // Mendapatkan penyelam berdasarkan id
     public Penyelam getPenyelam(String id) {
         Penyelam penyelam = null;
-        String sql = "SELECT * FROM penyelam WHERE id_penyelam = ?";  // Query untuk mendapatkan penyelam berdasarkan ID
+        String sql = "SELECT * FROM penyelam WHERE id_penyelam = ?";
         
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -51,7 +52,8 @@ public class PenyelamDAO {
                     resultSet.getInt("umur"),
                     resultSet.getString("alamat"),
                     resultSet.getString("password"),
-                    resultSet.getString("no_hp")  // Mengambil no_hp
+                    resultSet.getString("no_hp"),
+                    resultSet.getString("role") // Mengambil role
                 );
             }
         } catch (SQLException e) {
