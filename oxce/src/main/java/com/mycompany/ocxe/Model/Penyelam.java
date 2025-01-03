@@ -6,7 +6,19 @@ public class Penyelam {
     private int umur;
     private String alamat;
     private String password;
-    private String no_hp; 
+    private String no_hp;
+    private String role; // Tambahkan atribut role
+
+    // Constructor dengan parameter
+    public Penyelam(String id_penyelam, String nama, int umur, String alamat, String password, String no_hp, String role) {
+        this.id_penyelam = id_penyelam;
+        this.nama = nama;
+        this.umur = umur;
+        this.alamat = alamat;
+        this.password = password;
+        this.no_hp = no_hp;
+        this.role = role; // Inisialisasi role
+    }
 
     // Constructor
     public Penyelam(String id_penyelam, String nama, int umur, String alamat, String password, String no_hp) {
@@ -16,9 +28,9 @@ public class Penyelam {
         this.alamat = alamat;
         this.password = password;
         this.no_hp = no_hp; // Inisialisasi no_hp
+        this.role = role;
     }
-
-    // Getter and Setter methods
+    // Getter dan Setter untuk id_penyelam
     public String getIdPenyelam() {
         return id_penyelam;
     }
@@ -27,6 +39,7 @@ public class Penyelam {
         this.id_penyelam = id_penyelam;
     }
 
+    // Getter dan Setter untuk nama
     public String getNama() {
         return nama;
     }
@@ -35,6 +48,7 @@ public class Penyelam {
         this.nama = nama;
     }
 
+    // Getter dan Setter untuk umur
     public int getUmur() {
         return umur;
     }
@@ -43,6 +57,7 @@ public class Penyelam {
         this.umur = umur;
     }
 
+    // Getter dan Setter untuk alamat
     public String getAlamat() {
         return alamat;
     }
@@ -51,6 +66,7 @@ public class Penyelam {
         this.alamat = alamat;
     }
 
+    // Getter dan Setter untuk password
     public String getPassword() {
         return password;
     }
@@ -59,12 +75,22 @@ public class Penyelam {
         this.password = password;
     }
 
-    public String getNoHp() { // Getter untuk no_hp
+    // Getter dan Setter untuk no_hp
+    public String getNoHp() {
         return no_hp;
     }
 
-    public void setNoHp(String no_hp) { // Setter untuk no_hp
+    public void setNoHp(String no_hp) {
         this.no_hp = no_hp;
+    }
+
+    // Getter dan Setter untuk role
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override
@@ -75,7 +101,8 @@ public class Penyelam {
                 ", umur=" + umur +
                 ", alamat='" + alamat + '\'' +
                 ", password='" + password + '\'' +
-                ", no_hp='" + no_hp + '\'' + // Menampilkan no_hp
+                ", no_hp='" + no_hp + '\'' +
+                ", role='" + role + '\'' + // Tambahkan role ke output
                 '}';
     }
 }
