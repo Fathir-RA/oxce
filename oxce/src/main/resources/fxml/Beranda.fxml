@@ -2,42 +2,42 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ocxe.Controller.BerandaController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-                <HBox prefHeight="83.0" prefWidth="700.0" style="-fx-background-color: #001A6E;">
+                <HBox prefHeight="83.0" prefWidth="700.0" style="-fx-background-color: #80c4e9;">
                     <!-- Left Side Title -->
                     <Label prefHeight="90.0" prefWidth="158.0" style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold; -fx-padding: 0 0 0 20;" text="Beranda" HBox.hgrow="NEVER" />
                     
                     <!-- Right Side Navbar Buttons -->
                     <HBox alignment="CENTER_RIGHT" prefHeight="83.0" prefWidth="505.0" spacing="10.0" stylesheets="@../css/Navbar.css" HBox.hgrow="ALWAYS">
-                        <Button fx:id="btnBeranda" prefHeight="50.0" prefWidth="120.0" styleClass="nav-button" text="Beranda" alignment="CENTER_LEFT">
+                        <Button fx:id="btnBeranda" alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="120.0" styleClass="nav-button" text="Beranda">
                             <graphic>
                                 <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@/images/home.png" />
+                                        <Image url="@/images/Home.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
                         </Button>
 
-                        <Button fx:id="btnLihatTiket" onAction="#handleLihatTiketAction" prefHeight="50.0" prefWidth="130.0" styleClass="nav-button" text="Lihat Tiket" alignment="CENTER_LEFT">
+                        <Button fx:id="btnLihatTiket" alignment="CENTER_LEFT" onAction="#handleLihatTiketAction" prefHeight="50.0" prefWidth="130.0" styleClass="nav-button" text="Lihat Tiket">
                             <graphic>
                                 <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@/images/tickets.png" />
+                                        <Image url="@/images/tiket.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
                         </Button>
 
-                        <Button fx:id="btnDestinasi" onAction="#handleLihatDestinasiAction" prefHeight="50.0" prefWidth="120.0" styleClass="nav-button" text="Destinasi" alignment="CENTER_LEFT">
+                        <Button fx:id="btnDestinasi" alignment="CENTER_LEFT" onAction="#handleLihatDestinasiAction" prefHeight="50.0" prefWidth="120.0" styleClass="nav-button" text="Destinasi">
                             <graphic>
                                 <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -47,7 +47,7 @@
                             </graphic>
                         </Button>
 
-                        <Button fx:id="btnLogOut" onAction="#handleLogOutAction" prefHeight="50.0" prefWidth="120.0" styleClass="nav-button" text="Log Out" alignment="CENTER_LEFT">
+                        <Button fx:id="btnLogOut" alignment="CENTER_LEFT" onAction="#handleLogOutAction" prefHeight="50.0" prefWidth="120.0" styleClass="nav-button" text="Log Out">
                             <graphic>
                                 <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
