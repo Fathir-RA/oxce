@@ -7,26 +7,30 @@
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ocxe.Controller.PesanTiketController">
+<AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #80c4e9;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ocxe.Controller.PesanTiketController">
     <children>
-        <Label layoutX="200" layoutY="20" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Pesan Tiket" />
+        <Label layoutX="286.0" layoutY="25.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Pesan Tiket" textFill="WHITE" />
 
-        <Label layoutX="50" layoutY="80" text="Destinasi" />
+        <Label layoutX="50" layoutY="80" style="-fx-font-size: 16;" text="Destinasi" textFill="WHITE" />
         <ComboBox fx:id="cbDestinasi" layoutX="180" layoutY="80" prefWidth="200" />
 
-        <Label layoutX="50" layoutY="120" text="Tanggal" />
+        <Label layoutX="50" layoutY="120" style="-fx-font-size: 16;" text="Tanggal" textFill="WHITE" />
         <DatePicker fx:id="dateTanggal" layoutX="180" layoutY="120" prefWidth="200" />
 
-        <Label layoutX="50" layoutY="160" text="Waktu" />
+        <Label layoutX="50" layoutY="160" style="-fx-font-size: 16;" text="Waktu" textFill="WHITE" />
         <ComboBox fx:id="cbWaktu" layoutX="180" layoutY="160" prefWidth="200" />
 
-        <Label layoutX="50" layoutY="200" text="Jumlah Tiket" />
+        <Label layoutX="50" layoutY="200" style="-fx-font-size: 16;" text="Jumlah Tiket" textFill="WHITE" />
         <Spinner fx:id="spQuantity" layoutX="180" layoutY="200" prefWidth="200" />
 
-        <Label layoutX="50" layoutY="240" text="Total Harga" />
-        <Label fx:id="lblTotalHarga" layoutX="180" layoutY="240" prefWidth="200" style="-fx-font-weight: bold;" text="Rp 0" />
+        <Label layoutX="50" layoutY="240" style="-fx-font-size: 16;" text="Total Harga" textFill="WHITE" />
+        <Label fx:id="lblTotalHarga" layoutX="180" layoutY="240" prefWidth="200" style="-fx-font-weight: bold;" text="Rp 0" textFill="WHITE" />
 
-        <Button fx:id="btnPesan" layoutX="180" layoutY="280" prefWidth="200" text="Pesan Tiket" />
+        <Label fx:id="lblSisaTiket" layoutX="180.0" layoutY="279.0" prefWidth="200" style="-fx-font-weight: bold;" text="-" textFill="WHITE" />
+
+        <Button fx:id="btnPesan" layoutX="180.0" layoutY="316.0" prefWidth="200" text="Pesan Tiket" />
         <Button fx:id="btnKembali" layoutX="35.0" layoutY="437.0" prefHeight="17.0" prefWidth="100.0" text="Kembali" />
+        
+      <Label layoutX="50.0" layoutY="275.0" style="-fx-font-size: 16;" text="Sisa Tiket" textFill="WHITE" />
     </children>
 </AnchorPane>
