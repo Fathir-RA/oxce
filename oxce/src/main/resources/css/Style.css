@@ -1,0 +1,68 @@
+/* Style untuk tombol btnPramuka */
+.btnPramuka {
+    -fx-background-image: url("/images/PulauPramuka.JPEG");
+    -fx-background-size: cover; /* Menyesuaikan ukuran gambar */
+    -fx-border-color: transparent; /* Default tanpa border */
+    -fx-border-width: 2px; /* Lebar border */
+    -fx-background-radius: 10px; /* Membuat sudut tombol melengkung */
+    -fx-border-radius: 10px;
+}
+.btnPramuka:hover {
+    -fx-border-color: #0056b3; /* Border warna biru saat hover */
+    -fx-border-width: 2px;
+    -fx-opacity: 0.8; /* Efek transparansi */
+}
+.btnPramuka:pressed {
+    -fx-border-color: #003d80; /* Warna border lebih gelap saat ditekan */
+    -fx-opacity: 0.6; /* Efek transparansi lebih gelap */
+}
+
+/* Style untuk tombol btnSepa */
+.btnSepa {
+    -fx-background-image: url("/images/PulauSepa.JPG");
+    -fx-background-size: cover;
+    -fx-border-color: transparent;
+    -fx-border-width: 2px;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+.btnSepa:hover {
+    -fx-border-color: #008000; /* Border warna hijau saat hover */
+    -fx-border-width: 2px;
+    -fx-opacity: 0.8;
+}
+.btnSepa:pressed {
+    -fx-border-color: #006400; /* Warna border lebih gelap saat ditekan */
+    -fx-opacity: 0.6;
+}
+
+/* Style untuk tombol btnHarapan */
+.btnHarapan {
+    -fx-background-image: url("/images/PulauHarapan.JPG");
+    -fx-background-size: cover;
+    -fx-border-color: transparent;
+    -fx-border-width: 2px;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+.btnHarapan:hover {
+    -fx-border-color: #ffa500; /* Border warna oranye saat hover */
+    -fx-border-width: 2px;
+    -fx-opacity: 0.8;
+}
+.btnHarapan:pressed {
+    -fx-border-color: #cc8400; /* Warna border lebih gelap saat ditekan */
+    -fx-opacity: 0.6;
+}
+
+/* Tambahan opsional untuk efek visual tombol secara umum */
+.button {
+    -fx-cursor: hand; /* Ubah kursor menjadi pointer saat hover */
+    -fx-text-fill: transparent; /* Hilangkan teks tombol (opsional) */
+}
+.root {
+    -fx-background-image: url("/images/background.JPG");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: cover;
+}
