@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ocxe.Controller.PulauHarapanController">
+    <children>
+        <ScrollPane prefHeight="400.0" prefWidth="600.0" fitToHeight="true" fitToWidth="true">
+            <content>
+                <VBox spacing="20" style="-fx-padding: 10;">
+                    <!-- Container untuk kategori PulauHarapan-Flora -->
+                    <VBox spacing="10">
+                        <Label text="PulauHarapan-Flora" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                        <HBox fx:id="floraContainer" spacing="20" />
+                    </VBox>
+
+                    <!-- Container untuk kategori PulauHarapan-Fauna -->
+                    <VBox spacing="10">
+                        <Label text="PulauHarapan-Fauna" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                        <HBox fx:id="faunaContainer" spacing="20" />
+                    </VBox>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>
