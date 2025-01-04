@@ -3,30 +3,42 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ocxe.Controller.PulauHarapanController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ocxe.Controller.PulauHarapanController">
     <children>
-        <ScrollPane prefHeight="400.0" prefWidth="600.0" fitToHeight="true" fitToWidth="true">
+
+        <!-- ScrollPane untuk konten utama -->
+        <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="500.0" prefWidth="700.0">
             <content>
-                <VBox spacing="20" style="-fx-padding: 10;">
+                <AnchorPane prefHeight="370.0" prefWidth="698.0">
                     <!-- Container untuk kategori PulauHarapan-Flora -->
-                    <VBox spacing="10">
-                        <Label text="PulauHarapan-Flora" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
-                        <HBox fx:id="floraContainer" spacing="20" />
-                    </VBox>
+                    <AnchorPane layoutX="9.0" layoutY="189.0" prefHeight="120.0" prefWidth="680.0">
+                        <Label layoutX="10.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="PulauHarapan-Flora" />
+                        <HBox fx:id="floraContainer" layoutX="10.0" layoutY="30.0" prefHeight="80.0" prefWidth="660.0" spacing="20" />
+                    </AnchorPane>
 
                     <!-- Container untuk kategori PulauHarapan-Fauna -->
-                    <VBox spacing="10">
-                        <Label text="PulauHarapan-Fauna" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
-                        <HBox fx:id="faunaContainer" spacing="20" />
-                    </VBox>
-                </VBox>
+                    <AnchorPane layoutX="9.0" layoutY="326.0" prefHeight="120.0" prefWidth="680.0">
+                        <Label layoutX="10.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="PulauHarapan-Fauna" />
+                        <HBox fx:id="faunaContainer" layoutX="10.0" layoutY="30.0" prefHeight="80.0" prefWidth="660.0" spacing="20" />
+                    </AnchorPane>
+               <AnchorPane layoutY="22.0" prefHeight="160.0" prefWidth="680.0">
+                  <children>
+                     <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../images/PulauHarapan.jpg" />
+                        </image>
+                     </ImageView>
+                     <Text layoutX="237.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pulau Harapan, bagian dari Kepulauan Seribu, menawarkan keanekaragaman flora dan fauna bawah laut yang memukau. Berikut adalah beberapa spesies yang dapat ditemukan di perairan sekitar Pulau Harapan:" wrappingWidth="304.13671875" />
+                     <Button fx:id="btnKembali" layoutX="583.0" layoutY="121.0" mnemonicParsing="false" onAction="#handleKembaliAction" text="Kembali" />
+                  </children>
+               </AnchorPane>
+                </AnchorPane>
             </content>
         </ScrollPane>
     </children>
