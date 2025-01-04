@@ -1,0 +1,19 @@
+.glass-table-view {
+    -fx-background-color: rgba(255, 255, 255, 0.5); /* Transparansi dengan warna putih */
+    -fx-background-radius: 10; /* Sudut membulat */
+    -fx-border-radius: 10;
+    -fx-border-color: rgba(200, 200, 200, 0.3); /* Garis tepi ringan */
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 0, 0); /* Efek bayangan */
+}
+
+.table-view .column-header {
+    -fx-background-color: #80c4e9; 
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.table-view .cell {
+    -fx-background-color: transparent; /* Transparansi pada sel */
+    -fx-text-fill: #333; /* Warna teks sel */
+}
