@@ -1,0 +1,55 @@
+package com.mycompany.ocxe.Controller;
+
+import com.mycompany.ocxe.DAO.DestinasiDAO;
+import com.mycompany.ocxe.Model.Destinasi;
+import javafx.fxml.FXML;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+
+import java.io.ByteArrayInputStream;
+import java.util.List;
+
+public class PulauHarapanController {
+
+    @FXML
+    private HBox floraContainer; // Container untuk kategori Flora
+
+    @FXML
+    private HBox faunaContainer; // Container untuk kategori Fauna
+
+    private final DestinasiDAO destinasiDAO = new DestinasiDAO();
+
+    @FXML
+    public void initialize() {
+        loadDestinasiByKategori("PulauHarapan-Flora", floraContainer);
+        loadDestinasiByKategori("PulauHarapan-Fauna", faunaContainer);
+    }
+
+    private void loadDestinasiByKategori(String kategori, HBox container) {
+        List<Destinasi> destinasiList = destinasiDAO.getDestinasiByKategori(kategori);
+
+        for (Destinasi destinasi : destinasiList) {
+            // Membuat elemen gambar
+            ImageView imageView = new ImageView();
+            imageView.setImage(new Image(new ByteArrayInputStream(destinasi.getGambar())));
+            imageView.setFitWidth(100);  // Lebar gambar
+            imageView.setFitHeight(100); // Tinggi gambar
+            imageView.setPreserveRatio(true);
+
+            // Membuat teks nama destinasi
+            Text namaText = new Text(destinasi.getNama());
+            namaText.setStyle("-fx-font-size: 14px; -fx-text-alignment: center;");
+
+            // Bungkus gambar dan teks dalam VBox
+            VBox itemBox = new VBox(imageView, namaText);
+            itemBox.setSpacing(5);
+            itemBox.setStyle("-fx-alignment: center;");
+
+            // Tambahkan itemBox ke dalam container
+            container.getChildren().add(itemBox);
+        }
+    }
+}
