@@ -35,6 +35,33 @@ public class PesanTiketDAO {
         }
         return 4; // Default jika tidak ada pemesanan
     }
+    
+    // Metode kedua: Mengambil sisa tiket berdasarkan nama destinasi dan waktu
+    public int getRemainingTickets(String destinasi, String waktu) throws SQLException {
+        String sql = "SELECT tiket.kuota - COALESCE(SUM(pesan_tiket.quantity), 0) AS sisa_tiket " +
+                     "FROM tiket " +
+                     "LEFT JOIN pesan_tiket ON tiket.id_tiket = pesan_tiket.id_tiket " +
+                     "WHERE tiket.destinasi = ? AND tiket.waktu = ? " +
+                     "GROUP BY tiket.id_tiket, tiket.kuota";
+
+        try (Connection connection = getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            stmt.setString(1, destinasi);
+            stmt.setString(2, waktu);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("sisa_tiket");
+                } else {
+                    return 0; // Jika tidak ada data, anggap tiket habis
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Gagal mendapatkan sisa tiket berdasarkan nama destinasi: " + e.getMessage());
+            throw e;
+        }
+    }
 
     // Membatasi pemesanan tiket di sesi yang sama, tanggal yang sama, dan destinasi yang sama
     public boolean canBookTickets(PesanTiket tiket) {
