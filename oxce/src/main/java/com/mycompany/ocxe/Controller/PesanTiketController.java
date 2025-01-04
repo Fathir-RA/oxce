@@ -37,37 +37,35 @@ public class PesanTiketController {
     private Label lblTotalHarga;
 
     @FXML
-    private Label lblOutput;
+    private Label lblSisaTiket;
 
     private final PesanTiketDAO tiketDAO = new PesanTiketDAO();
 
     @FXML
     public void initialize() {
-        // Tambahkan opsi ke ComboBox destinasi
         cbDestinasi.getItems().addAll(
             "Pulau A - Rp 500.000", 
             "Pulau B - Rp 750.000", 
             "Pulau C - Rp 1.000.000"
         );
-
-        // Tambahkan opsi ke ComboBox waktu
         cbWaktu.getItems().addAll("Pagi", "Siang", "Sore");
 
-        // Atur nilai default Spinner untuk jumlah tiket (1-4)
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 4, 1);
         spQuantity.setValueFactory(valueFactory);
 
-        // Event listener untuk mengupdate total harga
         cbDestinasi.setOnAction(event -> updateTotalHarga());
         spQuantity.valueProperty().addListener((obs, oldValue, newValue) -> updateTotalHarga());
 
         btnPesan.setOnAction(event -> pesanTiket());
         btnKembali.setOnAction(event -> navigateToBeranda());
+        
+        cbDestinasi.setOnAction(e -> updateSisaTiket());
+        cbWaktu.setOnAction(e -> updateSisaTiket());
     }
 
     private void pesanTiket() {
         try {
-            int idPenyelam = LoginController.idPenyelamLogin; // ID penyelam dari sesi login
+            int idPenyelam = LoginController.idPenyelamLogin;
             int idDestinasi = cbDestinasi.getSelectionModel().getSelectedIndex() + 1;
             LocalDate tanggal = dateTanggal.getValue();
             int waktu = cbWaktu.getSelectionModel().getSelectedIndex() + 1;
@@ -80,22 +78,41 @@ public class PesanTiketController {
 
             int harga = getHargaByIdDestinasi(idDestinasi);
             int idTiket = generateIdTiket();
-            PesanTiket tiket = new PesanTiket(idTiket, idPenyelam, idDestinasi, Date.valueOf(tanggal), waktu, quantity, harga, null);
 
-            // Cek sisa tiket
             int sisaTiket = tiketDAO.getRemainingTickets(idDestinasi, Date.valueOf(tanggal), waktu);
             if (quantity > sisaTiket) {
                 showError("Tiket tidak dapat dipesan. Sisa tiket yang tersedia: " + sisaTiket);
                 return;
             }
 
-            // Masukkan tiket jika kuota mencukupi
+            PesanTiket tiket = new PesanTiket(idTiket, idPenyelam, idDestinasi, Date.valueOf(tanggal), waktu, quantity, harga, null);
             tiketDAO.insertPesanTiket(tiket);
+
             int totalHarga = harga * quantity;
             showSuccess("Tiket berhasil dipesan! Total Harga: Rp " + totalHarga);
             clearForm();
+            updateSisaTiket();
         } catch (Exception e) {
             showError("Terjadi kesalahan: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    private void updateSisaTiket() {
+        try {
+            int idDestinasi = cbDestinasi.getSelectionModel().getSelectedIndex() + 1;
+            LocalDate tanggal = dateTanggal.getValue();
+            int waktu = cbWaktu.getSelectionModel().getSelectedIndex() + 1;
+
+            if (idDestinasi != 0 && tanggal != null && waktu != 0) {
+                int sisaTiket = tiketDAO.getRemainingTickets(idDestinasi, Date.valueOf(tanggal), waktu);
+                lblSisaTiket.setText("Sisa Tiket: " + sisaTiket);
+            } else {
+                lblSisaTiket.setText("Sisa Tiket: -");
+            }
+        } catch (Exception e) {
+            lblSisaTiket.setText("Sisa Tiket: Error");
+            e.printStackTrace();
         }
     }
 
