@@ -2,89 +2,78 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ocxe.Controller.DestinasiController">
     <children>
-        <BorderPane prefHeight="500.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <!-- Navbar -->
+        <HBox prefHeight="83.0" prefWidth="700.0" style="-fx-background-color: #80c4e9;">
+            <!-- Left Side Title -->
+            <Label prefHeight="90.0" prefWidth="158.0" style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold; -fx-padding: 0 0 0 20;" text="Destinasi" HBox.hgrow="NEVER" />
+        
+            <!-- Right Side Navbar Buttons -->
+            <HBox alignment="CENTER_RIGHT" prefHeight="83.0" prefWidth="505.0" spacing="10.0" stylesheets="@../css/Navbar.css" HBox.hgrow="ALWAYS">
+                <Button fx:id="btnBeranda" alignment="CENTER_LEFT" onAction="#handleBerandaAction" prefHeight="50.0" prefWidth="120.0" styleClass="nav-button" text="Beranda">
+                    <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true">
+                            <image>
+                                <Image url="@../images/Home.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+
+                <Button fx:id="btnLihatTiket" alignment="CENTER_LEFT" onAction="#handleLihatTiketAction" prefHeight="50.0" prefWidth="130.0" styleClass="nav-button" text="Lihat Tiket">
+                    <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/tiket.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+
+                <Button fx:id="btnDestinasi" alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="120.0" styleClass="nav-button" text="Destinasi">
+                    <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/Location.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+
+                <Button fx:id="btnLogOut" alignment="CENTER_LEFT" onAction="#handleLogOutAction" prefHeight="50.0" prefWidth="120.0" styleClass="nav-button" text="Log Out">
+                    <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/LogOut.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
             
-            <!-- Header / Navbar -->
-            <top>
-                <HBox prefHeight="83.0" prefWidth="700.0" style="-fx-background-color: #001A6E;" BorderPane.alignment="CENTER">
-                    <!-- Left Side Title -->
-                    <Label prefHeight="90.0" prefWidth="158.0" style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold; -fx-padding: 0 0 0 20;" text="Destinasi" HBox.hgrow="NEVER" />
-                    
-                    <!-- Right Side Navbar Buttons -->
-                    <HBox alignment="CENTER_RIGHT" prefHeight="83.0" prefWidth="505.0" spacing="10.0" stylesheets="@../css/Navbar.css" HBox.hgrow="ALWAYS">
-                        <Button fx:id="btnBeranda" onAction="#handleBerandaAction" prefHeight="50.0" prefWidth="120.0" styleClass="nav-button" text="Beranda" alignment="CENTER_LEFT">
-                <graphic>
-                    <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@/images/home.png" />
-                        </image>
-                    </ImageView>
-                </graphic>
-            </Button>
+            </HBox>
+        </HBox>
 
-            <Button fx:id="btnLihatTiket" onAction="#handleLihatTiketAction" prefHeight="50.0" prefWidth="130.0" styleClass="nav-button" text="Lihat Tiket" alignment="CENTER_LEFT">
-                <graphic>
-                    <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@/images/tickets.png" />
-                        </image>
-                    </ImageView>
-                </graphic>
-            </Button>
-
-            <Button fx:id="btnDestinasi" prefHeight="50.0" prefWidth="120.0" styleClass="nav-button" text="Destinasi" alignment="CENTER_LEFT">
-                <graphic>
-                    <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@/images/location.png" />
-                        </image>
-                    </ImageView>
-                </graphic>
-            </Button>
-
-            <Button fx:id="btnLogOut" onAction="#handleLogOutAction" prefHeight="50.0" prefWidth="120.0" styleClass="nav-button" text="Log Out" alignment="CENTER_LEFT">
-                <graphic>
-                    <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@/images/logout.png" />
-                        </image>
-                    </ImageView>
-                </graphic>
-            </Button>
-                    </HBox>
-                </HBox>
-            </top>
-            
-            <!-- Scrollable Content Area -->
-            <center>
-                <ScrollPane fitToHeight="true" fitToWidth="true" BorderPane.alignment="CENTER">
-                    <VBox spacing="10.0" style="-fx-padding: 10;">
-                        <!-- Example content to demonstrate scrolling -->
-                        <Label style="-fx-font-size: 18px;" text="Konten 1" />
-                        <Label style="-fx-font-size: 18px;" text="Konten 2" />
-                        <Label style="-fx-font-size: 18px;" text="Konten 3" />
-                        <Label style="-fx-font-size: 18px;" text="Konten 4" />
-                        <Label style="-fx-font-size: 18px;" text="Konten 5" />
-                        <Label style="-fx-font-size: 18px;" text="Konten 6" />
-                        <Label style="-fx-font-size: 18px;" text="Konten 7" />
-                        <Label style="-fx-font-size: 18px;" text="Konten 8" />
-                        <Label style="-fx-font-size: 18px;" text="Konten 9" />
-                        <Label style="-fx-font-size: 18px;" text="Konten 10" />
-                        <Label style="-fx-font-size: 18px;" text="Konten 11" />
-                        <Label style="-fx-font-size: 18px;" text="Konten 12" />
-                    </VBox>
-                </ScrollPane>
-            </center>
-        </BorderPane>
+        <!-- Content Area -->
+        <VBox layoutY="83.0" spacing="10.0" style="-fx-padding: 10;">
+            <!-- Buttons for Destinations -->
+            <HBox alignment="CENTER" spacing="10.0" />
+        </VBox>
+          <Button fx:id="btnPramuka" layoutX="14.0" layoutY="271.0" mnemonicParsing="false" onAction="#handlePramukaAction" prefHeight="200.0" prefWidth="215.0" styleClass="btnPramuka" stylesheets="@../css/style.css" />
+          <Button fx:id="btnSepa" layoutX="242.0" layoutY="271.0" mnemonicParsing="false" onAction="#handleSepaAction" prefHeight="200.0" prefWidth="215.0" styleClass="btnSepa" stylesheets="@../css/style.css" />
+          <Button fx:id="btnHarapan" layoutX="471.0" layoutY="271.0" mnemonicParsing="false" onAction="#handleHarapanAction" prefHeight="200.0" prefWidth="215.0" styleClass="btnHarapan" stylesheets="@../css/style.css" />
+      <TextFlow layoutX="18.0" layoutY="91.0" prefHeight="166.0" prefWidth="665.0" style="-fx-background-color: #80C4E980; -fx-background-radius: 15;" />
+      <Text fill="WHITE" layoutX="39.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14; -fx-font-family: times new roman;" text="Kepulauan Seribu memiliki beberapa destinasi menyelam unggulan, seperti Pulau Pramuka, Sepa, dan Harapan. Pulau Pramuka dikenal dengan ekosistem terumbu karang yang terawat dan konservasi penyu, menjadikannya ideal untuk eksplorasi bawah laut. Pulau Sepa menawarkan perairan tenang dan visibilitas baik, cocok untuk penyelam pemula, dengan kehidupan laut seperti ikan tropis dan terumbu karang warna-warni. Pulau Harapan menyajikan keindahan bawah laut yang alami dan beragam, termasuk terumbu karang sehat serta spesies unik seperti ikan badut dan kuda laut. Ketiga pulau ini memberikan pengalaman menyelam yang menarik dan berkesan." wrappingWidth="625.13671875" />
+      <Text fill="#80c4e9" layoutX="75.0" layoutY="486.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14; -fx-underline: true;" text="pulau pramuka" />
+      <Text fill="#80c4e9" layoutX="318.0" layoutY="485.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-underline: true; -fx-font-size: 14;" text="pulau sepa" />
+      <Text fill="#80c4e9" layoutX="534.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14; -fx-underline: true;" text="pulau harapan" />
     </children>
 </AnchorPane>
