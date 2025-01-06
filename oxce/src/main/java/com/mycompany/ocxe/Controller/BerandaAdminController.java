@@ -16,6 +16,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -36,6 +39,8 @@ import java.io.ByteArrayInputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
 
 public class BerandaAdminController {
 
@@ -98,7 +103,16 @@ public class BerandaAdminController {
     private ComboBox<String> destinasiComboBox; // ComboBox untuk memilih destinasi
     @FXML
     private DatePicker tanggalDatePicker; // DatePicker untuk memilih tanggal
-
+    
+    @FXML
+    private Label labelTiketTerjual;
+    @FXML
+    private Label labelPendapatan;
+    @FXML
+    private Label labelDestinasiPopuler;
+    @FXML
+    private Label labelDestinasiDetails;
+    
     @FXML
     public void initialize() {
         // Mengisi ComboBox dengan daftar destinasi dari model
@@ -114,7 +128,7 @@ public class BerandaAdminController {
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         totalHargaColumn.setCellValueFactory(new PropertyValueFactory<>("totalHargaProperty"));
         
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id_destinasi"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("idDestinasi"));
         namaColumn.setCellValueFactory(new PropertyValueFactory<>("nama"));
         kategoriColumn.setCellValueFactory(new PropertyValueFactory<>("kategori"));
         gambarColumn.setCellValueFactory(new PropertyValueFactory<>("gambar"));
@@ -126,6 +140,13 @@ public class BerandaAdminController {
             String waktuString = getWaktuById(waktu);
             return new SimpleStringProperty(waktuString);
         });
+        
+        // Menggunakan converter untuk menampilkan destinasi
+        idDestinasiColumn.setCellValueFactory(cellData -> {
+            int idDestinasi = cellData.getValue().getIdDestinasi();
+            String destinasi = getDestinasiById(idDestinasi);
+            return new SimpleStringProperty(destinasi);
+        });
 
         // Menggunakan ImageTableCell untuk kolom gambar
         gambarColumn.setCellFactory(column -> new ImageTableCell());
@@ -133,6 +154,7 @@ public class BerandaAdminController {
 
         // Load data destinasi ke tabel dan ComboBox
         loadDestinasiData();
+        informasiSingkat();
 
         // Menambahkan listener untuk tabel destinasi
         destinasiTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -147,7 +169,33 @@ public class BerandaAdminController {
                 filterTiketDataByDestinasi(newValue);
             }
         });
+    //Batas initialize   
     }
+    
+    private void informasiSingkat() {
+        // Ambil statistik dari DAO
+        Map<String, Object> statistik = tiketDAO.getStatisik();
+
+        // Update label berdasarkan data statistik
+        labelTiketTerjual.setText("Total Tiket Terjual: " + statistik.get("totalTiketTerjual"));
+        labelPendapatan.setText("Total Pendapatan: Rp " + statistik.get("totalPendapatan"));
+        labelDestinasiPopuler.setText("Destinasi Populer: " + statistik.get("destinasiPopuler"));
+
+        // Menampilkan informasi detail untuk setiap destinasi
+        List<Map<String, Object>> destinasiDetails = (List<Map<String, Object>>) statistik.get("destinasiDetails");
+        StringBuilder details = new StringBuilder("Rangking Destinasi Populer:\n");
+
+        for (int i = 0; i < destinasiDetails.size(); i++) {
+            Map<String, Object> destinasi = destinasiDetails.get(i);
+            details.append(i + 1).append(". ").append(destinasi.get("destinasi")).append(" - Tiket Terjual: ")
+                .append(destinasi.get("totalTiket")).append(", Pendapatan: Rp ").append(destinasi.get("totalPendapatan")).append("\n");
+        }
+
+        // Update labelDestinasiDetails dengan hasil ranking destinasi
+        labelDestinasiDetails.setText(details.toString());
+    }
+
+
     
         public class ImageTableCell extends TableCell<Destinasi, byte[]> {
         @Override
@@ -309,9 +357,9 @@ public class BerandaAdminController {
 
         // Hardcode pemetaan destinasi
         Map<String, Integer> destinasiMap = new HashMap<>();
-        destinasiMap.put("Destinasi A", 1);
-        destinasiMap.put("Destinasi B", 2);
-        destinasiMap.put("Destinasi C", 3);
+        destinasiMap.put("Pulau Pramuka", 1);
+        destinasiMap.put("Pulau Sepa", 2);
+        destinasiMap.put("Pulau Harapan", 3);
 
         // Dapatkan ID destinasi dari pilihan ComboBox
         Integer idDestinasi = destinasi != null ? destinasiMap.get(destinasi) : null;
@@ -328,9 +376,9 @@ public class BerandaAdminController {
 
     private String getDestinasiById(int idDestinasi) {
         switch (idDestinasi) {
-            case 1: return "Destinasi A";
-            case 2: return "Destinasi B";
-            case 3: return "Destinasi C";
+            case 1: return "Pulau Pramuka";
+            case 2: return "Pulau Sepa";
+            case 3: return "Pulau Harapan";
             default: return "Tidak Diketahui";
         }
     }
