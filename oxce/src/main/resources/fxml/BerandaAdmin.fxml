@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -11,6 +15,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ocxe.Controller.BerandaAdminController">
@@ -22,6 +27,13 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Button fx:id="btnLogOut" layoutX="595.0" layoutY="419.0" mnemonicParsing="false" onAction="#hadleLogOutAction" prefHeight="38.0" prefWidth="85.0" text="Log Out" />
+                        <VBox layoutX="20.0" layoutY="20.0" spacing="10.0">
+                            <Label text="Statistik Penjualan" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+                            <Label fx:id="labelTiketTerjual" text="Total Tiket Terjual: - " />
+                            <Label fx:id="labelPendapatan" text="Total Pendapatan: - " />
+                            <Label fx:id="labelDestinasiPopuler" text="Destinasi Populer: -" />
+                            <Label fx:id="labelDestinasiDetails" text="Destinasi Terpopuler: " wrapText="true" />
+                        </VBox>
                      </children>
                 </AnchorPane>
                 </content>
@@ -79,11 +91,11 @@
                 </content>
             </Tab>
 
-            <Tab text="Tambahkan Destinasi">
+            <Tab text="Tambahkan Flora &amp; Fauna">
                 <content>
                     <AnchorPane prefHeight="500.0" prefWidth="700.0">
                         <children>
-                            <Label layoutX="20.0" layoutY="20.0" text ="Tambah / Perbarui Destinasi" />
+                            <Label layoutX="20.0" layoutY="20.0" text="Tambah / Perbarui Destinasi" />
                             <Label layoutX="20.0" layoutY="60.0" text="Nama Destinasi" />
                             <TextField fx:id="namaDestinasiField" layoutX="150.0" layoutY="60.0" prefWidth="200.0" />
 
@@ -91,13 +103,13 @@
                             <TextField fx:id="kategoriField" layoutX="150.0" layoutY="100.0" prefWidth="200.0" />
 
                             <Label layoutX="20.0" layoutY="140.0" text="Gambar" />
-                            <Button layoutX="150.0" layoutY="140.0" text="Pilih Gambar" onAction="#handleSelectImage" />
-                            <TextField fx:id="gambarField" layoutX="250.0" layoutY="140.0" prefWidth="200.0" editable="false" />
+                            <Button layoutX="150.0" layoutY="140.0" onAction="#handleSelectImage" text="Pilih Gambar" />
+                            <TextField fx:id="gambarField" editable="false" layoutX="250.0" layoutY="140.0" prefWidth="200.0" />
 
-                            <Button fx:id="btnTambah" layoutX="20.0" layoutY="180.0" text="Tambah" onAction="#handleTambahDestinasi" />
-                            <Button fx:id="btnPerbarui" layoutX="100.0" layoutY="180.0" text="Perbarui" onAction="#handlePerbaruiDestinasi" />
-                            <Button fx:id="btnHapusDestinasi" layoutX="180.0" layoutY="180.0" text="Hapus" onAction="#handleHapusDestinasi" />
-                            <Button fx:id="btnResetDestinasi" layoutX="260.0" layoutY="180.0" text="Reset" onAction="#handleResetFormDestinasi" />
+                            <Button fx:id="btnTambah" layoutX="20.0" layoutY="180.0" onAction="#handleTambahDestinasi" text="Tambah" />
+                            <Button fx:id="btnPerbarui" layoutX="100.0" layoutY="180.0" onAction="#handlePerbaruiDestinasi" text="Perbarui" />
+                            <Button fx:id="btnHapusDestinasi" layoutX="180.0" layoutY="180.0" onAction="#handleHapusDestinasi" text="Hapus" />
+                            <Button fx:id="btnResetDestinasi" layoutX="260.0" layoutY="180.0" onAction="#handleResetFormDestinasi" text="Reset" />
 
                             <TableView fx:id="destinasiTable" layoutX="20.0" layoutY="220.0" prefHeight="250.0" prefWidth="660.0">
                                 <columns>
@@ -108,7 +120,7 @@
                                 </columns>
                             </TableView>
 
-                            <Button fx:id="btnHapus" layoutX="550.0" layoutY="480.0" text="Hapus" onAction="#handleHapusDestinasi" />
+                            <Button fx:id="btnHapus" layoutX="550.0" layoutY="480.0" onAction="#handleHapusDestinasi" text="Hapus" />
                         </children>
                     </AnchorPane>
                 </content>
