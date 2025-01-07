@@ -1,109 +1,113 @@
 package com.mycompany.ocxe.Controller;
 
-import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import java.io.IOException;
 
-public class BerandaController {
+public class DestinasiController {
 
     @FXML
-    private Button btnDestinasi;
-    
+    private Button btnPramuka;
+
+    @FXML
+    private Button btnSepa;
+
+    @FXML
+    private Button btnHarapan;
+
+    @FXML
+    private Button btnBeranda;
+
     @FXML
     private Button btnLihatTiket;
-    
+
     @FXML
     private Button btnLogOut;
 
     @FXML
-    private Button btnPesan;
-
-    @FXML
-    private void handleLogOutAction(ActionEvent event) {
-        // Tindakan ketika link Log Out diklik
+    private void initialize() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml")); // Ganti dengan path yang sesuai
-            Parent loginRoot = loader.load();
-            Scene loginScene = new Scene(loginRoot);
+            // Configure Pulau Pramuka Button
 
-            Stage currentStage = (Stage) btnLogOut.getScene().getWindow();
-            currentStage.setScene(loginScene);
-            currentStage.setTitle("Login");
-        } catch (IOException e) {
+            // Configure Pulau Harapan Button
+//            Image harapanImg = new Image(getClass().getResource("/images/PulauHarapan.JPG").toExternalForm());
+//            ImageView harapanView = new ImageView(harapanImg);
+//            harapanView.setFitWidth(80);
+//            harapanView.setFitHeight(80);
+//            btnHarapan.setGraphic(harapanView);
+//            btnHarapan.setTooltip(new Tooltip("Pulau Harapan"));
+
+        } catch (Exception e) {
             e.printStackTrace();
-            showError("Error loading Login: " + e.getMessage());
         }
     }
+     public void handlePramukaAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PulauPramuka.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) btnPramuka.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+      public void handleSepaAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PulauSepa.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) btnSepa.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+   
 
-    @FXML
-    private void handleLihatDestinasiAction(ActionEvent event) {
-        // Tindakan ketika link Lihat Destinasi diklik
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Destinasi.fxml")); // Ganti dengan path yang sesuai
-            Parent destinasiRoot = loader.load();
-            Scene destinasiScene = new Scene(destinasiRoot);
-
-            Stage currentStage = (Stage) btnDestinasi.getScene().getWindow();
-            currentStage.setScene(destinasiScene);
-            currentStage.setTitle("Destinasi");
-        } catch (IOException e) {
-            e.printStackTrace();
-            showError("Error loading Destinasi: " + e.getMessage());
-        }
+    public void handleHarapanAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PulauHarapan.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) btnHarapan.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
-    @FXML
-    private void handleLihatTiketAction(ActionEvent event) {
-        // Tindakan ketika link Lihat Tiket Saya diklik
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LihatTiket.fxml")); // Ganti dengan path yang sesuai
-            Parent lihatTiketRoot = loader.load();
-            Scene lihatTiketScene = new Scene(lihatTiketRoot);
-
-            Stage currentStage = (Stage) btnLihatTiket.getScene().getWindow();
-            currentStage.setScene(lihatTiketScene);
-            currentStage.setTitle("Lihat Tiket");
-        } catch (IOException e) {
-            e.printStackTrace();
-            showError("Error loading Lihat Tiket: " + e.getMessage());
-        }
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(title);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 
-    @FXML
-    private void handlePesanSekarangAction(ActionEvent event) {
-        // Tindakan ketika tombol Pesan Sekarang diklik
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PesanTiket.fxml")); // Ganti dengan path yang sesuai
-            Parent pesanTiketRoot = loader.load();
-            Scene pesanTiketScene = new Scene(pesanTiketRoot);
-
-            Stage currentStage = (Stage) btnPesan.getScene().getWindow();
-            currentStage.setScene(pesanTiketScene);
-            currentStage.setTitle("Pesan Tiket");
-        } catch (IOException e) {
-            e.printStackTrace();
-            showError("Error loading Pesan Tiket: " + e.getMessage());
-        }
+    public void handleBerandaAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Beranda.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) btnBeranda.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
-    private void showInfo(String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Informasi");
-        alert.setContentText(message);
-        alert.show();
+    public void handleLihatTiketAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LihatTiket.fxml"));
+        Parent lihatTiketRoot = loader.load();
+        Scene lihatTiketScene = new Scene(lihatTiketRoot);
+
+        Stage currentStage = (Stage) btnLihatTiket.getScene().getWindow();
+        currentStage.setScene(lihatTiketScene);
+        currentStage.setTitle("Lihat Tiket");
     }
 
-    private void showError(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setContentText(message);
-        alert.show();
+    public void handleLogOutAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+        Parent loginRoot = loader.load();
+        Scene loginScene = new Scene(loginRoot);
+
+        Stage currentStage = (Stage) btnLogOut.getScene().getWindow();
+        currentStage.setScene(loginScene);
+        currentStage.setTitle("Login");
     }
 }
