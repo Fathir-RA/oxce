@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
@@ -72,7 +71,6 @@
                            <Font name="System Bold" size="17.0" />
                         </font>
                      </Label>
-                     <Button fx:id="btnKembali" layoutX="601.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleKembaliAction" styleClass="animatedButton" stylesheets="@../css/Style.css" text="Kembali" textFill="WHITE" />
                         </children>
                     </AnchorPane>
                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="167.0" prefWidth="685.0" style="-fx-background-color: #80c4e8;">
