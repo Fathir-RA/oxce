@@ -3,7 +3,9 @@ package com.mycompany.ocxe.DAO;
 import com.mycompany.ocxe.Model.PesanTiket;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PesanTiketDAO {
     private final String jdbcURL = "jdbc:mysql://localhost:3306/oxcee";
@@ -186,5 +188,123 @@ public class PesanTiketDAO {
         }
         return tiketList;
     }
+
+    public Map<String, Object> getStatisik() {
+    Map<String, Object> statistics = new HashMap<>();
+    
+    // Query untuk mendapatkan jumlah total tiket terjual
+    String totalTiketQuery = "SELECT SUM(quantity) AS total_tiket FROM pesantiket";
+    
+    // Query untuk mendapatkan total pendapatan berdasarkan harga dan quantity
+    String totalPendapatanQuery = "SELECT SUM(quantity * harga) AS total_pendapatan FROM pesantiket";
+    
+    // Query untuk mendapatkan destinasi yang paling banyak dipesan berdasarkan id_destinasi
+    String destinasiPopulerQuery = 
+        "SELECT id_destinasi, COUNT(*) AS jumlah_pemesanan " +
+        "FROM pesantiket " +
+        "GROUP BY id_destinasi " +
+        "ORDER BY jumlah_pemesanan DESC " +
+        "LIMIT 1";
+    
+    // Query untuk mendapatkan jumlah tiket dan total pendapatan per destinasi
+    String tiketPerDestinasiQuery = 
+        "SELECT id_destinasi, SUM(quantity) AS total_tiket, SUM(quantity * harga) AS total_pendapatan " +
+        "FROM pesantiket " +
+        "GROUP BY id_destinasi " +
+        "ORDER BY total_tiket DESC";
+    
+    try (Connection connection = getConnection()) {
+        // Total Tiket Terjual
+        try (PreparedStatement stmt = connection.prepareStatement(totalTiketQuery);
+             ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                statistics.put("totalTiketTerjual", rs.getInt("total_tiket"));
+            }
+        }
+
+        // Total Pendapatan
+        try (PreparedStatement stmt = connection.prepareStatement(totalPendapatanQuery);
+             ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                statistics.put("totalPendapatan", rs.getInt("total_pendapatan"));
+            }
+        }
+
+        // Destinasi Populer
+        try (PreparedStatement stmt = connection.prepareStatement(destinasiPopulerQuery);
+             ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                int idDestinasiPopuler = rs.getInt("id_destinasi");
+                String destinasiPopuler = "";
+                
+                // Tentukan nama destinasi berdasarkan id_destinasi
+                switch (idDestinasiPopuler) {
+                    case 1:
+                        destinasiPopuler = "Pulau Pramuka";
+                        break;
+                    case 2:
+                        destinasiPopuler = "Pulau Sepa";
+                        break;
+                    case 3:
+                        destinasiPopuler = "Pulau Harapan";
+                        break;
+                    default:
+                        destinasiPopuler = "Tidak Dikenal";
+                        break;
+                }
+
+                statistics.put("destinasiPopuler", destinasiPopuler);
+            } else {
+                statistics.put("destinasiPopuler", "Tidak Ada Data");
+            }
+        }
+
+        // Informasi Tiket dan Pendapatan per Destinasi
+        List<Map<String, Object>> destinasiDetails = new ArrayList<>();
+        try (PreparedStatement stmt = connection.prepareStatement(tiketPerDestinasiQuery);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                Map<String, Object> destinasi = new HashMap<>();
+                int idDestinasi = rs.getInt("id_destinasi");
+                int totalTiket = rs.getInt("total_tiket");
+                int totalPendapatan = rs.getInt("total_pendapatan");
+
+                // Tentukan nama destinasi berdasarkan id_destinasi
+                String destinasiName = "";
+                switch (idDestinasi) {
+                    case 1:
+                        destinasiName = "Pulau Pramuka";
+                        break;
+                    case 2:
+                        destinasiName = "Pulau Sepa";
+                        break;
+                    case 3:
+                        destinasiName = "Pulau Harapan";
+                        break;
+                    default:
+                        destinasiName = "Tidak Dikenal";
+                        break;
+                }
+
+                destinasi.put("destinasi", destinasiName);
+                destinasi.put("totalTiket", totalTiket);
+                destinasi.put("totalPendapatan", totalPendapatan);
+                destinasiDetails.add(destinasi);
+            }
+        }
+
+        statistics.put("destinasiDetails", destinasiDetails);
+        
+    } catch (SQLException e) {
+        System.err.println("Gagal mendapatkan statistik: " + e.getMessage());
+        // Return default values in case of an error
+        statistics.put("totalTiketTerjual", 0);
+        statistics.put("totalPendapatan", 0);
+        statistics.put("destinasiPopuler", "Tidak Ada Data");
+        statistics.put("destinasiDetails", new ArrayList<>());
+    }
+
+    return statistics;
+}
 
 }
