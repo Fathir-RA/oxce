@@ -113,7 +113,7 @@
                     </AnchorPane>
                 </content>
             </Tab>
-            <Tab text="Tambahkan Akun Pendamping">
+            <Tab text="Tambahkan Pendamping">
                 <content>
                     <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml">
                         <children>
@@ -164,7 +164,7 @@
                 </content>
             </Tab>
 
-            <Tab text="Tambahkan Flora &amp; Fauna">
+            <Tab text="Tambahkan Destinasi">
                 <content>
                     <AnchorPane prefHeight="500.0" prefWidth="700.0">
                         <children>
@@ -206,7 +206,7 @@
                             <TableView fx:id="destinasiTable" layoutX="20.0" layoutY="220.0" prefHeight="234.0" prefWidth="656.0" style="-fx-background-color: #FFFFFF80;" styleClass="glass-table-view" stylesheets="@../css/Table.css">
                                 <columns>
                                     <TableColumn fx:id="idColumn" prefWidth="87.99999809265137" text="ID" />
-                                    <TableColumn fx:id="namaColumn" prefWidth="176.79999542236328" text="Nama Destinasi" />
+                                    <TableColumn fx:id="namaColumn" prefWidth="176.79999542236328" text="Flora &amp; Fauna" />
                                     <TableColumn fx:id="kategoriColumn" prefWidth="184.0" text="Kategori" />
                                     <TableColumn fx:id="gambarColumn" prefWidth="202.39999389648438" text="Gambar" />
                                 </columns>
