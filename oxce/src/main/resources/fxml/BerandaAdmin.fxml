@@ -164,7 +164,7 @@
                 </content>
             </Tab>
 
-            <Tab text="Tambahkan Destinasi">
+            <Tab text="Tambahkan Flora &amp; Fauna">
                 <content>
                     <AnchorPane prefHeight="500.0" prefWidth="700.0">
                         <children>
@@ -173,7 +173,7 @@
                               <Image url="@../images/background.jpg" />
                            </image>
                         </ImageView>
-                            <Label layoutX="235.0" layoutY="15.0" text="Tambah/Perbarui Destinasi" textFill="WHITE" underline="true">
+                            <Label layoutX="217.0" layoutY="14.0" text="Tambah/Perbarui Flora &amp; Fauna" textFill="WHITE" underline="true">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font></Label>
