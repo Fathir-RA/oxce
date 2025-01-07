@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.BarChart?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.chart.PieChart?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -14,26 +11,64 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ocxe.Controller.BerandaAdminController">
    <children>
       <TabPane prefHeight="500.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-            <Tab text="Beranda">
+             <Tab text="Beranda">
                 <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="btnLogOut" layoutX="595.0" layoutY="419.0" mnemonicParsing="false" onAction="#hadleLogOutAction" prefHeight="38.0" prefWidth="85.0" text="Log Out" />
-                        <VBox layoutX="20.0" layoutY="20.0" spacing="10.0">
-                            <Label text="Statistik Penjualan" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
-                            <Label fx:id="labelTiketTerjual" text="Total Tiket Terjual: - " />
-                            <Label fx:id="labelPendapatan" text="Total Pendapatan: - " />
-                            <Label fx:id="labelDestinasiPopuler" text="Destinasi Populer: -" />
-                            <Label fx:id="labelDestinasiDetails" text="Destinasi Terpopuler: " wrapText="true" />
-                        </VBox>
+                        <ImageView fitHeight="475.0" fitWidth="708.0" layoutX="-1.0" layoutY="-3.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../images/background.jpg" />
+                           </image>
+                        </ImageView>
+                        <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#dde8f097" height="316.0" layoutX="122.0" layoutY="80.0" stroke="#b1d1fa" strokeType="INSIDE" width="471.0" />
+                        <Button fx:id="btnLogOut" layoutX="593.0" layoutY="428.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#hadleLogOutAction" prefHeight="26.0" prefWidth="84.0" style="-fx-font-weight: bold;" stylesheets="@../css/Button.css" text="Log Out" />
+                         <Label layoutX="268.0" layoutY="31.0" style="-fx-font-weight: bold;" text="Statistik Penjualan" textFill="WHITE" underline="true">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                        </Label>
+                         <Label fx:id="labelTiketTerjual" layoutX="157.0" layoutY="112.0" prefHeight="26.0" prefWidth="400.0" style="-fx-background-color: #8cb7f7; -fx-background-radius: 10;" text="      Total Tiket Terjual: - " textFill="#0a0091">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                         <Label fx:id="labelPendapatan" layoutX="157.0" layoutY="170.0" prefHeight="26.0" prefWidth="400.0" style="-fx-background-color: #8cb7f7; -fx-background-radius: 10;" text="      Total Pendapatan: - " textFill="#0a0091">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                         <Label fx:id="labelDestinasiPopuler" layoutX="157.0" layoutY="228.0" prefHeight="26.0" prefWidth="400.0" style="-fx-background-color: #8cb7f7; -fx-background-radius: 10;" text="      Destinasi Populer: -" textFill="#0a0091">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                         <Label fx:id="labelDestinasiDetails" alignment="TOP_LEFT" layoutX="158.0" layoutY="287.0" prefHeight="72.0" prefWidth="400.0" style="-fx-background-color: #8cb7f7; -fx-background-radius: 10;" text="     Rangking Destinasi Terpopuler: -" textFill="#0a0091" wrapText="true">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" top="5.0" />
+                           </padding>
+                        </Label>
                      </children>
                 </AnchorPane>
                 </content>
@@ -42,7 +77,12 @@
                 <content>
                     <AnchorPane prefHeight="400.0" prefWidth="600.0">
                         <children>
-                            <TableView fx:id="tiketTable" layoutX="15.0" layoutY="148.0" prefHeight="280.0" prefWidth="670.0">
+                        <ImageView fitHeight="472.0" fitWidth="700.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../images/background.jpg" />
+                           </image>
+                        </ImageView>
+                            <TableView fx:id="tiketTable" layoutX="15.0" layoutY="163.0" prefHeight="280.0" prefWidth="670.0" style="-fx-background-color: #FFFFFF80;" styleClass="glass-table-view" stylesheets="@../css/Table.css">
                                 <columns>
                                     <TableColumn fx:id="idTiketColumn" prefWidth="85.0" text="ID Tiket" />
                                     <TableColumn fx:id="namaPenyelamColumn" prefWidth="137.0" text="Nama Penyelam" /> <!-- Kolom untuk Nama Penyelam -->
@@ -53,78 +93,128 @@
                                     <TableColumn fx:id="totalHargaColumn" prefWidth="133.0" text="Total Harga" />
                                 </columns>
                             </TableView>
-                        <ComboBox fx:id="destinasiComboBox" layoutX="228.0" layoutY="26.0" onAction="#handleFilterChange" prefWidth="150.0" />
-                        <DatePicker fx:id="tanggalDatePicker" layoutX="228.0" layoutY="67.0" onAction="#handleFilterChange" />
-                        <Label layoutX="29.0" layoutY="25.0" prefHeight="27.0" prefWidth="111.0" text="Cari berdasarkan :" />
-                        <Label alignment="CENTER" layoutX="141.0" layoutY="25.0" prefHeight="27.0" prefWidth="74.0" text="Destinasi" />
-                        <Label alignment="CENTER" layoutX="148.0" layoutY="66.0" prefHeight="27.0" prefWidth="60.0" text="Tanggal" />
-                        <Button fx:id="btnReset" layoutX="363.0" layoutY="108.0" mnemonicParsing="false" onAction="#handleResetAction" text="Reset" />
+                        <ComboBox fx:id="destinasiComboBox" layoutX="220.0" layoutY="35.0" onAction="#handleFilterChange" prefHeight="26.0" prefWidth="166.0" />
+                        <DatePicker fx:id="tanggalDatePicker" layoutX="220.0" layoutY="78.0" onAction="#handleFilterChange" prefHeight="26.0" prefWidth="167.0" />
+                        <Label layoutX="19.0" layoutY="29.0" prefHeight="27.0" prefWidth="111.0" text="Cari berdasarkan :" textFill="WHITE" underline="true">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font></Label>
+                        <Label alignment="CENTER" layoutX="141.0" layoutY="35.0" prefHeight="22.0" prefWidth="63.0" style="-fx-background-color: #8cb7f7; -fx-background-radius: 10;" text="Destinasi" textFill="#0a0091">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font></Label>
+                        <Label alignment="CENTER" layoutX="142.0" layoutY="77.0" prefHeight="22.0" prefWidth="60.0" style="-fx-background-color: #8cb7f7; -fx-background-radius: 10;" text="Tanggal" textFill="#0a0091">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font></Label>
+                        <Button fx:id="btnReset" layoutX="220.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleResetAction" prefHeight="18.0" prefWidth="64.0" style="-fx-background-color: #0a0091; -fx-background-radius: 7; -fx-font-weight: bold;" stylesheets="@../css/Button.css" text="Reset" textFill="WHITE" />
 
                         </children>
                     </AnchorPane>
                 </content>
             </Tab>
-            <Tab text="Tambahkan Akun Pendamping">
+            <Tab text="Tambahkan Pendamping">
                 <content>
                     <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml">
                         <children>
-                        <Label layoutX="13.0" layoutY="14.0" prefHeight="27.0" prefWidth="246.0" text="Menambahkan akun pendamping">
+                        <ImageView fitHeight="472.0" fitWidth="700.0" layoutY="-1.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../images/background.jpg" />
+                           </image>
+                        </ImageView>
+                        <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#dde8f097" height="374.0" layoutX="91.0" layoutY="63.0" stroke="#b1d1fa" strokeType="INSIDE" width="486.0" />
+                        <Label layoutX="204.0" layoutY="20.0" text="Menambah Akun Pendamping" textFill="WHITE" underline="true">
                            <font>
-                              <Font name="System Bold" size="14.0" />
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
                            </font>
                         </Label>
-                            <TextField fx:id="idPendampingField" layoutX="300.0" layoutY="69.0" prefWidth="200.0" promptText="ID Pendamping" />
-                            <TextField fx:id="namaField" layoutX="300.0" layoutY="118.0" prefWidth="200.0" promptText="Nama Lengkap" />
-                            <TextField fx:id="umurField" layoutX="300.0" layoutY="171.0" prefWidth="200.0" promptText="Umur" />
-                            <TextField fx:id="alamatField" layoutX="300.0" layoutY="223.0" prefWidth="200.0" promptText="Alamat" />
-                            <TextField fx:id="noHpField" layoutX="300.0" layoutY="277.0" prefWidth="200.0" promptText="No HP" />
-                            <PasswordField fx:id="passwordField" layoutX="300.0" layoutY="332.0" prefWidth="200.0" promptText="Password" />
-                            <Button fx:id="btnDaftarPendamping" layoutX="331.0" layoutY="385.0" onAction="#handleRegisterPendamping" text="Daftarkan Pendamping" />
-                        <Label alignment="CENTER" layoutX="107.0" layoutY="69.0" prefHeight="26.0" prefWidth="169.0" text="Masukkan id pendamping" />
-                        <Label alignment="CENTER" layoutX="107.0" layoutY="171.0" prefHeight="26.0" prefWidth="169.0" text="Masukkan umur pendamping" />
-                        <Label alignment="CENTER" layoutX="107.0" layoutY="118.0" prefHeight="26.0" prefWidth="169.0" text="Masukkan nama pendamping" />
-                        <Label alignment="CENTER" layoutX="107.0" layoutY="223.0" prefHeight="26.0" prefWidth="169.0" text="Masukkan alamat " />
-                        <Label alignment="CENTER" layoutX="107.0" layoutY="277.0" prefHeight="26.0" prefWidth="169.0" text="Masukkan nomor HP" />
-                        <Label alignment="CENTER" layoutX="107.0" layoutY="332.0" prefHeight="26.0" prefWidth="169.0" text="Masukkan Password " />
+                            <TextField fx:id="idPendampingField" layoutX="334.0" layoutY="83.0" prefWidth="200.0" promptText="ID Pendamping" />
+                            <TextField fx:id="namaField" layoutX="334.0" layoutY="132.0" prefWidth="200.0" promptText="Nama Lengkap" />
+                            <TextField fx:id="umurField" layoutX="334.0" layoutY="185.0" prefWidth="200.0" promptText="Umur" />
+                            <TextField fx:id="alamatField" layoutX="334.0" layoutY="237.0" prefWidth="200.0" promptText="Alamat" />
+                            <TextField fx:id="noHpField" layoutX="334.0" layoutY="291.0" prefWidth="200.0" promptText="No HP" />
+                            <PasswordField fx:id="passwordField" layoutX="334.0" layoutY="346.0" prefWidth="200.0" promptText="Password" />
+                            <Button fx:id="btnDaftarPendamping" layoutX="352.0" layoutY="389.0" onAction="#handleRegisterPendamping" prefHeight="23.0" prefWidth="158.0" style="-fx-background-color: #0a0091; -fx-background-radius: 10; -fx-font-weight: bold;" stylesheets="@../css/Button.css" text="Daftarkan Pendamping" textFill="WHITE" underline="true" />
+                        <Label alignment="CENTER" layoutX="129.0" layoutY="83.0" prefHeight="26.0" prefWidth="188.0" style="-fx-background-color: #8cb7f7; -fx-background-radius: 10;" text="Masukkan ID Pendamping" textFill="#0a0091">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font></Label>
+                        <Label alignment="CENTER" layoutX="129.0" layoutY="185.0" prefHeight="26.0" prefWidth="188.0" style="-fx-background-color: #8cb7f7; -fx-background-radius: 10;" text="Masukkan Umur Pendamping" textFill="#0a0091">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font></Label>
+                        <Label alignment="CENTER" layoutX="129.0" layoutY="132.0" prefHeight="26.0" prefWidth="188.0" style="-fx-background-color: #8cb7f7; -fx-background-radius: 10;" text="Masukkan Nama Pendamping" textFill="#0a0091">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font></Label>
+                        <Label alignment="CENTER" layoutX="129.0" layoutY="237.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: #8cb7f7; -fx-background-radius: 10;" text="Masukkan Alamat " textFill="#0a0091">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font></Label>
+                        <Label alignment="CENTER" layoutX="129.0" layoutY="291.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: #8cb7f7; -fx-background-radius: 10;" text="Masukkan Nomor HP" textFill="#0a0091">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font></Label>
+                        <Label alignment="CENTER" layoutX="129.0" layoutY="346.0" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: #8cb7f7; -fx-background-radius: 10;" text="Masukkan Password " textFill="#0a0091">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font></Label>
                         </children>
                     </AnchorPane>
                 </content>
             </Tab>
 
-            <Tab text="Tambahkan Flora &amp; Fauna">
+            <Tab text="Tambahkan Destinasi">
                 <content>
                     <AnchorPane prefHeight="500.0" prefWidth="700.0">
                         <children>
-                            <Label layoutX="20.0" layoutY="20.0" text="Tambah / Perbarui Destinasi" />
-                            <Label layoutX="20.0" layoutY="60.0" text="Nama Destinasi" />
+                        <ImageView fitHeight="506.0" fitWidth="710.0" layoutX="-3.0" layoutY="-3.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@../images/background.jpg" />
+                           </image>
+                        </ImageView>
+                            <Label layoutX="235.0" layoutY="15.0" text="Tambah/Perbarui Destinasi" textFill="WHITE" underline="true">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font></Label>
+                            <Label layoutX="20.0" layoutY="62.0" prefHeight="22.0" prefWidth="103.0" style="-fx-background-color: #8cb7f7; -fx-background-radius: 9;" styleClass="text-stroke" stylesheets="@../css/Style.css" text="  Nama Destinasi" textFill="#0a0091">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font></Label>
                             <TextField fx:id="namaDestinasiField" layoutX="150.0" layoutY="60.0" prefWidth="200.0" />
 
-                            <Label layoutX="20.0" layoutY="100.0" text="Kategori" />
+                            <Label layoutX="20.0" layoutY="100.0" prefHeight="22.0" prefWidth="62.0" style="-fx-background-color: #8cb7f7; -fx-background-radius: 9;" text="  Kategori" textFill="#0a0091">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font></Label>
                             <TextField fx:id="kategoriField" layoutX="150.0" layoutY="100.0" prefWidth="200.0" />
 
-                            <Label layoutX="20.0" layoutY="140.0" text="Gambar" />
-                            <Button layoutX="150.0" layoutY="140.0" onAction="#handleSelectImage" text="Pilih Gambar" />
-                            <TextField fx:id="gambarField" editable="false" layoutX="250.0" layoutY="140.0" prefWidth="200.0" />
+                            <Label layoutX="20.0" layoutY="140.0" prefHeight="22.0" prefWidth="62.0" style="-fx-background-color: #8cb7f7; -fx-background-radius: 10;" text="  Gambar" textFill="#0a0091">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font></Label>
+                            <Button fx:id="btnPilihGambar" layoutX="356.0" layoutY="140.0" onAction="#handleSelectImage" prefHeight="5.0" prefWidth="90.0" style="-fx-background-color: #0a0091; -fx-background-radius: 7; -fx-font-weight: bold;" stylesheets="@../css/Button.css" text="Pilih Gambar" textFill="WHITE" />
+                            <TextField fx:id="gambarField" editable="false" layoutX="150.0" layoutY="140.0" prefWidth="200.0" />
 
-                            <Button fx:id="btnTambah" layoutX="20.0" layoutY="180.0" onAction="#handleTambahDestinasi" text="Tambah" />
-                            <Button fx:id="btnPerbarui" layoutX="100.0" layoutY="180.0" onAction="#handlePerbaruiDestinasi" text="Perbarui" />
-                            <Button fx:id="btnHapusDestinasi" layoutX="180.0" layoutY="180.0" onAction="#handleHapusDestinasi" text="Hapus" />
-                            <Button fx:id="btnResetDestinasi" layoutX="260.0" layoutY="180.0" onAction="#handleResetFormDestinasi" text="Reset" />
+                            <Button fx:id="btnTambah" layoutX="20.0" layoutY="186.0" onAction="#handleTambahDestinasi" prefHeight="18.0" prefWidth="62.0" style="-fx-background-color: #0a0091; -fx-background-radius: 7; -fx-font-weight: bold;" stylesheets="@../css/Button.css" text="Tambah" textFill="WHITE" />
+                            <Button fx:id="btnPerbarui" layoutX="93.0" layoutY="186.0" onAction="#handlePerbaruiDestinasi" prefHeight="26.0" prefWidth="64.0" style="-fx-background-color: #0a0091; -fx-background-radius: 7; -fx-font-weight: bold;" stylesheets="@../css/Button.css" text="Perbarui" textFill="WHITE" />
+                            <Button fx:id="btnResetForm" layoutX="169.0" layoutY="186.0" onAction="#handleResetFormDestinasi" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: #0a0091; -fx-background-radius: 7; -fx-font-weight: bold;" stylesheets="@../css/Button.css" text="Reset" textFill="WHITE" />
 
-                            <TableView fx:id="destinasiTable" layoutX="20.0" layoutY="220.0" prefHeight="250.0" prefWidth="660.0">
+                            <TableView fx:id="destinasiTable" layoutX="20.0" layoutY="220.0" prefHeight="234.0" prefWidth="656.0" style="-fx-background-color: #FFFFFF80;" styleClass="glass-table-view" stylesheets="@../css/Table.css">
                                 <columns>
-                                    <TableColumn fx:id="idColumn" prefWidth="50.0" text="ID" />
-                                    <TableColumn fx:id="namaColumn" prefWidth="150.0" text="Nama Destinasi" />
-                                    <TableColumn fx:id="kategoriColumn" prefWidth="150.0" text="Kategori" />
-                                    <TableColumn fx:id="gambarColumn" prefWidth="150.0" text="Gambar" />
+                                    <TableColumn fx:id="idColumn" prefWidth="87.99999809265137" text="ID" />
+                                    <TableColumn fx:id="namaColumn" prefWidth="176.79999542236328" text="Nama Destinasi" />
+                                    <TableColumn fx:id="kategoriColumn" prefWidth="184.0" text="Kategori" />
+                                    <TableColumn fx:id="gambarColumn" prefWidth="202.39999389648438" text="Gambar" />
                                 </columns>
                             </TableView>
 
-                            <Button fx:id="btnHapus" layoutX="550.0" layoutY="480.0" onAction="#handleHapusDestinasi" text="Hapus" />
+                            <Button fx:id="btnHapus" layoutX="248.0" layoutY="186.0" onAction="#handleHapusDestinasi" prefHeight="26.0" prefWidth="71.0" style="-fx-background-color: #0a0091; -fx-background-radius: 7; -fx-font-weight: bold;" stylesheets="@../css/Button.css" text="Hapus" textFill="WHITE" />
                         </children>
                     </AnchorPane>
                 </content>
             </Tab>
+
         </tabs>
       </TabPane>
    </children>
