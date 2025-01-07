@@ -1,59 +1,98 @@
-/* Style untuk tombol btnPramuka */
+
 .btnPramuka {
     -fx-background-image: url("/images/PulauPramuka.JPEG");
-    -fx-background-size: cover; /* Menyesuaikan ukuran gambar */
-    -fx-border-color: transparent; /* Default tanpa border */
+    -fx-background-size: 100% 100%; /* Gambar memenuhi tombol */
+    -fx-background-position: center; /* Pusatkan gambar */
+    -fx-background-repeat: no-repeat; /* Jangan ulang gambar */
+    -fx-background-radius: 10px; /* Sudut membulat */
+    -fx-border-radius: 10px; /* Border membulat */
+    -fx-border-color: transparent; /* Border default transparan */
     -fx-border-width: 2px; /* Lebar border */
-    -fx-background-radius: 10px; /* Membuat sudut tombol melengkung */
-    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0, 0); /* Shadow default */
+    -fx-transition: all 0.3s ease-in-out; /* Transisi halus */
+    -fx-transition-delay: 0s; /* Tidak ada delay pada awalnya */
 }
 .btnPramuka:hover {
-    -fx-border-color: #0056b3; /* Border warna biru saat hover */
-    -fx-border-width: 2px;
-    -fx-opacity: 0.8; /* Efek transparansi */
+   -fx-background-size: 120% 120%; /* Zoom in gambar */
+    -fx-opacity: 0.9; /* Sedikit transparansi */
+    -fx-border-color: #0078d7; /* Border warna biru */
+    -fx-effect: dropshadow(gaussian, rgba(0, 120, 215, 0.5), 15, 0.7, 0, 0);
+    -fx-transition: all 0.3s ease-in-out; /* Ulangi transisi saat hover */
+    -fx-transition-delay: 0.2s; /* Tidak ada delay pada awalnya */
 }
 .btnPramuka:pressed {
-    -fx-border-color: #003d80; /* Warna border lebih gelap saat ditekan */
-    -fx-opacity: 0.6; /* Efek transparansi lebih gelap */
+    -fx-background-size: 100% 100%; /* Kembali ke ukuran normal saat ditekan */
+    -fx-opacity: 0.8; /* Lebih transparan */
+    -fx-border-color: #0056b3; /* Border lebih gelap */
+    -fx-effect: dropshadow(gaussian, rgba(0, 86, 179, 0.8), 10, 0.6, 0, 0); /* Shadow lebih kecil */
+    -fx-transition-delay: 0s; /* Tidak ada delay pada awalnya */
 }
 
 /* Style untuk tombol btnSepa */
 .btnSepa {
     -fx-background-image: url("/images/PulauSepa.JPG");
-    -fx-background-size: cover;
-    -fx-border-color: transparent;
-    -fx-border-width: 2px;
-    -fx-background-radius: 10px;
-    -fx-border-radius: 10px;
+    -fx-background-size: 100% 100%; /* Gambar memenuhi tombol */
+    -fx-background-position: center; /* Pusatkan gambar */
+    -fx-background-repeat: no-repeat; /* Jangan ulang gambar */
+    -fx-background-radius: 10px; /* Sudut membulat */
+    -fx-border-radius: 10px; /* Border membulat */
+    -fx-border-color: transparent; /* Border default transparan */
+    -fx-border-width: 2px; /* Lebar border */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0, 0); /* Shadow default */
+    -fx-transition: all 0.3s ease-in-out; /* Transisi halus */
+     -fx-transition-delay: 0s; /* Tidak ada delay pada awalnya */
+    
 }
 .btnSepa:hover {
-    -fx-border-color: #008000; /* Border warna hijau saat hover */
-    -fx-border-width: 2px;
-    -fx-opacity: 0.8;
+    -fx-background-size: 120% 120%; /* Zoom in gambar */
+    -fx-opacity: 0.9; /* Sedikit transparansi */
+    -fx-border-color: #0078d7; /* Border warna biru */
+    -fx-effect: dropshadow(gaussian, rgba(0, 120, 215, 0.5), 15, 0.7, 0, 0);
+    -fx-transition: all 0.3s ease-in-out; /* Ulangi transisi saat hover */
+     -fx-transition-delay: 0.2s; /* Tidak ada delay pada awalnya */
+
+   
 }
 .btnSepa:pressed {
-    -fx-border-color: #006400; /* Warna border lebih gelap saat ditekan */
-    -fx-opacity: 0.6;
+    -fx-background-size: 100% 100%; /* Kembali ke ukuran normal saat ditekan */
+    -fx-opacity: 0.8; /* Lebih transparan */
+    -fx-border-color: #0056b3; /* Border lebih gelap */
+    -fx-effect: dropshadow(gaussian, rgba(0, 86, 179, 0.8), 10, 0.6, 0, 0); /* Shadow lebih kecil */
+     -fx-transition-delay: 0s; /* Tidak ada delay pada awalnya */
+    
 }
 
 /* Style untuk tombol btnHarapan */
 .btnHarapan {
     -fx-background-image: url("/images/PulauHarapan.JPG");
-    -fx-background-size: cover;
-    -fx-border-color: transparent;
-    -fx-border-width: 2px;
-    -fx-background-radius: 10px;
-    -fx-border-radius: 10px;
+    -fx-background-size: 100% 100%; /* Gambar memenuhi tombol */
+    -fx-background-position: center; /* Pusatkan gambar */
+    -fx-background-repeat: no-repeat; /* Jangan ulang gambar */
+    -fx-background-radius: 10px; /* Sudut membulat */
+    -fx-border-radius: 10px; /* Border membulat */
+    -fx-border-color: transparent; /* Border default transparan */
+    -fx-border-width: 2px; /* Lebar border */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0, 0); /* Shadow default */
+    -fx-transition: all 0.3s ease-in-out; /* Transisi halus */
+     -fx-transition-delay: 0s; /* Tidak ada delay pada awalnya */
 }
 .btnHarapan:hover {
-    -fx-border-color: #ffa500; /* Border warna oranye saat hover */
-    -fx-border-width: 2px;
-    -fx-opacity: 0.8;
+    -fx-background-size: 120% 120%; /* Zoom in gambar */
+    -fx-opacity: 0.9; /* Sedikit transparansi */
+    -fx-border-color: #0078d7; /* Border warna biru */
+    -fx-effect: dropshadow(gaussian, rgba(0, 120, 215, 0.5), 15, 0.7, 0, 0);
+    -fx-transition: all 0.3s ease-in-out; /* Ulangi transisi saat hover */
+     -fx-transition-delay: 0.2s; /* Tidak ada delay pada awalnya */
+
 }
 .btnHarapan:pressed {
-    -fx-border-color: #cc8400; /* Warna border lebih gelap saat ditekan */
-    -fx-opacity: 0.6;
+  -fx-background-size: 100% 100%; /* Kembali ke ukuran normal saat ditekan */
+    -fx-opacity: 0.8; /* Lebih transparan */
+    -fx-border-color: #0056b3; /* Border lebih gelap */
+    -fx-effect: dropshadow(gaussian, rgba(0, 86, 179, 0.8), 10, 0.6, 0, 0); /* Shadow lebih kecil */
+     -fx-transition-delay: 0s; /* Tidak ada delay pada awalnya */
 }
+
 
 /* Tambahan opsional untuk efek visual tombol secara umum */
 .button {
@@ -65,4 +104,53 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-size: cover;
+}
+.button {
+    -fx-text-fill: white; /* Warna teks */
+    -fx-background-color: #80c4e9; /* Warna latar tombol */
+    -fx-font-size: 14px; /* Ukuran font */
+    -fx-background-radius: 10px; /* Radius tombol */
+}
+.glassy {
+    -fx-background-color: rgba(255, 255, 255, 0.4); /* Transparansi dengan warna putih */
+    -fx-background-radius: 10; /* Sudut membulat */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 0, 0); /* Efek bayangan */
+     -fx-border-color: rgba(200, 200, 200, 0.3); /* Garis tepi ringan */
+    
+}
+.animatedButton {
+ 
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0, 0); /* Shadow default */
+    -fx-transition: all 0.3s ease-in-out; /* Animasi transisi halus */
+}
+.animatedButton:hover {
+
+    -fx-scale-x: 1.1; /* Zoom in horizontal */
+    -fx-scale-y: 1.1; /* Zoom in vertikal */
+    -fx-effect: dropshadow(gaussian, rgba(0, 86, 179, 0.5), 15, 0.7, 0, 0); /* Shadow lebih besar */
+}
+.animatedButton:pressed {
+    -fx-scale-x: 0.50; /* Mengecil horizontal */
+    -fx-scale-y: 0.50; /* Mengecil vertikal */
+    -fx-opacity: 0.8; /* Transparansi */
+}
+buttonColor {
+    -fx-padding: 10; /* Padding dalam tombol */
+    -fx-background-color: #80c4e9; /* Warna default: biru laut muda */
+    -fx-background-radius: 25; /* Membuat sudut tombol melengkung */
+    -fx-font-size: 16px; /* Ukuran font */
+    -fx-font-weight: bold; /* Teks tebal */
+    -fx-text-fill: white; /* Warna teks putih */
+}
+
+.buttonColor:hover {
+    -fx-background-color: #3355FF; /* Warna biru lebih gelap saat di-hover */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 10, 0.5, 0, 0); /* Efek bayangan */
+    -fx-cursor: hand; /* Mengubah kursor menjadi pointer */
+}
+
+.buttonColor:pressed {
+    -fx-background-color: #667DFF; /* Warna biru yang lebih gelap saat ditekan */
+    -fx-text-fill: white; /* Warna teks tetap putih */
 }
