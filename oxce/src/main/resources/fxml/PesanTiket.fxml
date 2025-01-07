@@ -5,32 +5,56 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.TextFlow?>
 
-<AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #80c4e9;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ocxe.Controller.PesanTiketController">
+<AnchorPane prefHeight="500.0" prefWidth="700.0" styleClass="root" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ocxe.Controller.PesanTiketController">
     <children>
-        <Label layoutX="286.0" layoutY="25.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Pesan Tiket" textFill="WHITE" />
+      <TextFlow layoutX="104.0" layoutY="65.0" prefHeight="404.0" prefWidth="494.0" styleClass="glassy" stylesheets="@../css/style.css" />
+        <Label layoutX="289.0" layoutY="23.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Pesan Tiket" textFill="#0a0091" />
 
-        <Label layoutX="50" layoutY="80" style="-fx-font-size: 16;" text="Destinasi" textFill="WHITE" />
-        <ComboBox fx:id="cbDestinasi" layoutX="180" layoutY="80" prefWidth="200" />
+        <Label layoutX="120.0" layoutY="80.0" style="-fx-font-size: 16;" text="Destinasi" textFill="#0a0091" />
+        <ComboBox fx:id="cbDestinasi" layoutX="250.0" layoutY="80.0" prefWidth="200" />
 
-        <Label layoutX="50" layoutY="120" style="-fx-font-size: 16;" text="Tanggal" textFill="WHITE" />
-        <DatePicker fx:id="dateTanggal" layoutX="180" layoutY="120" prefWidth="200" />
+              <Label layoutX="120.0" layoutY="220.0" style="-fx-font-size: 16;" text="Tanggal" textFill="#0a0091" />
+        <DatePicker fx:id="dateTanggal" layoutX="250.0" layoutY="220.0" prefWidth="200" />
 
-        <Label layoutX="50" layoutY="160" style="-fx-font-size: 16;" text="Waktu" textFill="WHITE" />
-        <ComboBox fx:id="cbWaktu" layoutX="180" layoutY="160" prefWidth="200" />
+              <Label layoutX="120.0" layoutY="260.0" style="-fx-font-size: 16;" text="Waktu" textFill="#0a0091" />
+        <ComboBox fx:id="cbWaktu" layoutX="250.0" layoutY="260.0" prefWidth="200" />
 
-        <Label layoutX="50" layoutY="200" style="-fx-font-size: 16;" text="Jumlah Tiket" textFill="WHITE" />
-        <Spinner fx:id="spQuantity" layoutX="180" layoutY="200" prefWidth="200" />
+              <Label layoutX="120.0" layoutY="370.0" style="-fx-font-size: 16;" text="Jumlah Tiket" textFill="#0a0091" />
+        <Spinner fx:id="spQuantity" layoutX="250.0" layoutY="300.0" prefWidth="200" />
 
-        <Label layoutX="50" layoutY="240" style="-fx-font-size: 16;" text="Total Harga" textFill="WHITE" />
-        <Label fx:id="lblTotalHarga" layoutX="180" layoutY="240" prefWidth="200" style="-fx-font-weight: bold;" text="Rp 0" textFill="WHITE" />
+        <Label layoutX="120.0" layoutY="300.0" style="-fx-font-size: 16;" text="Total Harga" textFill="#0a0091" />
+        <Label fx:id="lblTotalHarga" layoutX="250.0" layoutY="370.0" prefWidth="200" style="-fx-font-weight: bold;" text="Rp 0" textFill="#0a0091" />
 
-        <Label fx:id="lblSisaTiket" layoutX="180.0" layoutY="279.0" prefWidth="200" style="-fx-font-weight: bold;" text="-" textFill="WHITE" />
+              <Label fx:id="lblSisaTiket" layoutX="250.0" layoutY="339.0" prefWidth="200" style="-fx-font-weight: bold;" text="-" textFill="#0a0091" />
 
-        <Button fx:id="btnPesan" layoutX="180.0" layoutY="316.0" prefWidth="200" text="Pesan Tiket" />
-        <Button fx:id="btnKembali" layoutX="35.0" layoutY="437.0" prefHeight="17.0" prefWidth="100.0" text="Kembali" />
+        <Button fx:id="btnPesan" layoutX="251.0" layoutY="427.0" prefWidth="200" styleClass="animatedButton" stylesheets="@../css/style.css" text="Pesan Tiket" />
+        <Button fx:id="btnKembali" layoutX="14.0" layoutY="8.0" prefHeight="17.0" prefWidth="100.0" styleClass="animatedButton" stylesheets="@../css/style.css" text="Kembali" />
         
-      <Label layoutX="50.0" layoutY="275.0" style="-fx-font-size: 16;" text="Sisa Tiket" textFill="WHITE" />
+            <Label layoutX="120.0" layoutY="335.0" style="-fx-font-size: 16;" text="Sisa Tiket" textFill="#0a0091" />
+      <ImageView fitHeight="90.0" fitWidth="100.0" layoutX="250.0" layoutY="113.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/PulauPramuka.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="90.0" fitWidth="100.0" layoutX="356.0" layoutY="113.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/PulauSepa.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="90.0" fitWidth="100.0" layoutX="462.0" layoutY="113.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/PulauHarapan.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="17.0" fitWidth="17.0" layoutX="20.0" layoutY="15.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/kembali.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>
