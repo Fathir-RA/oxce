@@ -2,23 +2,22 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ocxe.Controller.DestinasiController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ocxe.Controller.DestinasiController">
     <children>
         <!-- Navbar -->
-        <HBox prefHeight="83.0" prefWidth="700.0" style="-fx-background-color: #80c4e9;">
-            <!-- Left Side Title -->
-            <Label prefHeight="90.0" prefWidth="158.0" style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold; -fx-padding: 0 0 0 20;" text="Destinasi" HBox.hgrow="NEVER" />
-        
-            <!-- Right Side Navbar Buttons -->
-            <HBox alignment="CENTER_RIGHT" prefHeight="83.0" prefWidth="505.0" spacing="10.0" stylesheets="@../css/Navbar.css" HBox.hgrow="ALWAYS">
+        <HBox prefHeight="83.0" prefWidth="710.0" style="-fx-background-color: #80c4e9;" AnchorPane.topAnchor="0.0">
+            <Label prefHeight="90.0" prefWidth="158.0" style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold; -fx-padding: 0 0 0 20;" text="Destinasi" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="83.0" prefWidth="505.0" spacing="10.0" stylesheets="@../css/Navbar.css">
                 <Button fx:id="btnBeranda" alignment="CENTER_LEFT" onAction="#handleBerandaAction" prefHeight="50.0" prefWidth="120.0" styleClass="nav-button" text="Beranda">
                     <graphic>
                         <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true">
@@ -28,7 +27,6 @@
                         </ImageView>
                     </graphic>
                 </Button>
-
                 <Button fx:id="btnLihatTiket" alignment="CENTER_LEFT" onAction="#handleLihatTiketAction" prefHeight="50.0" prefWidth="130.0" styleClass="nav-button" text="Lihat Tiket">
                     <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
@@ -38,7 +36,6 @@
                         </ImageView>
                     </graphic>
                 </Button>
-
                 <Button fx:id="btnDestinasi" alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="120.0" styleClass="nav-button" text="Destinasi">
                     <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
@@ -48,7 +45,6 @@
                         </ImageView>
                     </graphic>
                 </Button>
-
                 <Button fx:id="btnLogOut" alignment="CENTER_LEFT" onAction="#handleLogOutAction" prefHeight="50.0" prefWidth="120.0" styleClass="nav-button" text="Log Out">
                     <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
@@ -58,22 +54,140 @@
                         </ImageView>
                     </graphic>
                 </Button>
-            
             </HBox>
         </HBox>
-
-        <!-- Content Area -->
-        <VBox layoutY="83.0" spacing="10.0" style="-fx-padding: 10;">
-            <!-- Buttons for Destinations -->
-            <HBox alignment="CENTER" spacing="10.0" />
-        </VBox>
-          <Button fx:id="btnPramuka" layoutX="14.0" layoutY="271.0" mnemonicParsing="false" onAction="#handlePramukaAction" prefHeight="200.0" prefWidth="215.0" styleClass="btnPramuka" stylesheets="@../css/style.css" />
-          <Button fx:id="btnSepa" layoutX="242.0" layoutY="271.0" mnemonicParsing="false" onAction="#handleSepaAction" prefHeight="200.0" prefWidth="215.0" styleClass="btnSepa" stylesheets="@../css/style.css" />
-          <Button fx:id="btnHarapan" layoutX="471.0" layoutY="271.0" mnemonicParsing="false" onAction="#handleHarapanAction" prefHeight="200.0" prefWidth="215.0" styleClass="btnHarapan" stylesheets="@../css/style.css" />
-      <TextFlow layoutX="18.0" layoutY="91.0" prefHeight="166.0" prefWidth="665.0" style="-fx-background-color: #80C4E980; -fx-background-radius: 15;" />
-      <Text fill="WHITE" layoutX="39.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14; -fx-font-family: times new roman;" text="Kepulauan Seribu memiliki beberapa destinasi menyelam unggulan, seperti Pulau Pramuka, Sepa, dan Harapan. Pulau Pramuka dikenal dengan ekosistem terumbu karang yang terawat dan konservasi penyu, menjadikannya ideal untuk eksplorasi bawah laut. Pulau Sepa menawarkan perairan tenang dan visibilitas baik, cocok untuk penyelam pemula, dengan kehidupan laut seperti ikan tropis dan terumbu karang warna-warni. Pulau Harapan menyajikan keindahan bawah laut yang alami dan beragam, termasuk terumbu karang sehat serta spesies unik seperti ikan badut dan kuda laut. Ketiga pulau ini memberikan pengalaman menyelam yang menarik dan berkesan." wrappingWidth="625.13671875" />
-      <Text fill="#80c4e9" layoutX="75.0" layoutY="486.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14; -fx-underline: true;" text="pulau pramuka" />
-      <Text fill="#80c4e9" layoutX="318.0" layoutY="485.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-underline: true; -fx-font-size: 14;" text="pulau sepa" />
-      <Text fill="#80c4e9" layoutX="534.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14; -fx-underline: true;" text="pulau harapan" />
+        
+        <!-- Scrollable Content -->
+        <ScrollPane hbarPolicy="NEVER" layoutY="83.0" prefHeight="417.0" prefWidth="710.0" style="-fx-background-color: #80c4e9;" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="83.0">
+            <VBox alignment="TOP_CENTER" prefHeight="926.0" prefWidth="700.0" spacing="20.0" style="-fx-padding: 20; -fx-background-color: #80c4e9;">
+                <TextFlow prefHeight="200.0" prefWidth="700.0" style="-fx-background-color: #80C4E980;">
+                    <Text fill="WHITE" style="-fx-font-size: 16; -fx-font-family: times new roman;" text="Kepulauan Seribu memiliki beberapa destinasi menyelam unggulan, seperti Pulau Pramuka, Sepa, dan Harapan. Pulau Pramuka dikenal dengan ekosistem terumbu karang yang terawat dan konservasi penyu, menjadikannya ideal untuk eksplorasi bawah laut. Pulau Sepa menawarkan perairan tenang dan visibilitas baik, cocok untuk penyelam pemula, dengan kehidupan laut seperti ikan tropis dan terumbu karang warna-warni. Pulau Harapan menyajikan keindahan bawah laut yang alami dan beragam, termasuk terumbu karang sehat serta spesies unik seperti ikan badut dan kuda laut. Ketiga pulau ini memberikan pengalaman menyelam yang menarik dan berkesan." wrappingWidth="660.0" />
+                </TextFlow>
+                <HBox alignment="CENTER" spacing="20.0">
+                    <Button fx:id="btnPramuka" onAction="#handlePramukaAction" prefHeight="170.0" prefWidth="200.0" styleClass="btnPramuka" stylesheets="@../css/style.css" />
+                    <Button fx:id="btnSepa" onAction="#handleSepaAction" prefHeight="170.0" prefWidth="200.0" styleClass="btnSepa" stylesheets="@../css/style.css" />
+                    <Button fx:id="btnHarapan" onAction="#handleHarapanAction" prefHeight="170.0" prefWidth="200.0" styleClass="btnHarapan" stylesheets="@../css/style.css" />
+                </HBox>
+                <HBox alignment="CENTER" spacing="135.0">
+                    <Text fill="WHITE" style="-fx-underline: true; -fx-font-size: 14;" text="Pulau Pramuka" />
+                    <Text fill="WHITE" style="-fx-underline: true; -fx-font-size: 14;" text="Pulau Sepa" />
+                    <Text fill="WHITE" style="-fx-underline: true; -fx-font-size: 14;" text="Pulau Harapan" />
+                </HBox>
+            <AnchorPane centerShape="false" prefHeight="147.0" prefWidth="660.0" scaleShape="false" style="-fx-background-color: #5AB2FF;">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="21.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/PantaiPagi.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="29.0" fitWidth="37.0" layoutX="238.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Pagi.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="281.0" layoutY="10.0" prefHeight="30.0" prefWidth="87.0" text="Sesi Pagi" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <TextFlow layoutX="234.0" layoutY="47.0" prefHeight="60.0" prefWidth="421.0">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Diving pagi hari, saat air jernih dan laut tenang, adalah momen terbaik untuk menikmati keindahan bawah laut. Mulai harimu dengan petualangan tak terlupakan!" wrappingWidth="433.77978515625">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </TextFlow>
+                  <ImageView fitHeight="29.0" fitWidth="37.0" layoutX="496.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Jam.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="527.0" layoutY="10.0" prefHeight="30.0" prefWidth="125.0" text="08.00 - 10.00" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="156.0" prefWidth="660.0" style="-fx-background-color: #5AB2FF;">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="452.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/PantaiSiang.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="29.0" fitWidth="37.0" layoutX="301.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Siang.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="336.0" layoutY="11.0" prefHeight="30.0" prefWidth="105.0" text="Sesi Siang" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <TextFlow layoutX="21.0" layoutY="46.0" prefHeight="60.0" prefWidth="421.0" textAlignment="RIGHT">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Diving siang hari menawarkan pencahayaan terbaik untuk menikmati keindahan bawah laut. Temukan warna-warna terumbu karang dan kehidupan laut yang memukau di tengah cahaya matahari!" textAlignment="RIGHT" wrappingWidth="433.77978515625">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </TextFlow>
+                  <ImageView fitHeight="29.0" fitWidth="37.0" layoutX="25.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Jam.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="56.0" layoutY="11.0" prefHeight="30.0" prefWidth="125.0" text="11.00 - 13.00" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="142.0" prefWidth="660.0" style="-fx-background-color: #5AB2FF;">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="21.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/PantaiSore.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="37.0" fitWidth="40.0" layoutX="234.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Sore.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="277.0" layoutY="11.0" prefHeight="30.0" prefWidth="87.0" text="Sesi Sore" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <TextFlow layoutX="232.0" layoutY="43.0" prefHeight="60.0" prefWidth="421.0">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Diving sore hari menghadirkan suasana tenang dan cahaya matahari yang lembut, menciptakan pengalaman magis di bawah laut. Temukan kehidupan laut yang mulai aktif menjelang senja!" wrappingWidth="433.77978515625">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </TextFlow>
+                  <ImageView fitHeight="29.0" fitWidth="37.0" layoutX="496.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Jam.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="527.0" layoutY="10.0" prefHeight="30.0" prefWidth="125.0" text="15.00 - 17.00" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            </VBox>
+        </ScrollPane>
     </children>
 </AnchorPane>
