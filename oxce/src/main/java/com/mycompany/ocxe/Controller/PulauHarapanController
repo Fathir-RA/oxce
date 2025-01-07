@@ -22,52 +22,77 @@ import javafx.stage.Stage;
 public class PulauHarapanController {
 
     @FXML
-    private HBox floraContainer; // Container untuk kategori Flora
+    private HBox floraContainer;
 
     @FXML
-    private HBox faunaContainer; // Container untuk kategori Fauna
+    private HBox faunaContainer;
 
-    private final DestinasiDAO destinasiDAO = new DestinasiDAO();
-    
     @FXML
     private Button btnKembali;
 
+    private final DestinasiDAO destinasiDAO = new DestinasiDAO();
+
     @FXML
     public void initialize() {
-        loadDestinasiByKategori("PulauHarapan-Flora", floraContainer);
-        loadDestinasiByKategori("PulauHarapan-Fauna", faunaContainer);
+        try {
+            loadDestinasiByKategori("PulauHarapan-Flora", floraContainer);
+            loadDestinasiByKategori("PulauHarapan-Fauna", faunaContainer);
+        } catch (Exception e) {
+            System.err.println("Error during initialization: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     private void loadDestinasiByKategori(String kategori, HBox container) {
         List<Destinasi> destinasiList = destinasiDAO.getDestinasiByKategori(kategori);
 
+        if (destinasiList == null || destinasiList.isEmpty()) {
+            System.out.println("No destinations found for category: " + kategori);
+            return;
+        }
+
         for (Destinasi destinasi : destinasiList) {
-            // Membuat elemen gambar
-            ImageView imageView = new ImageView();
-            imageView.setImage(new Image(new ByteArrayInputStream(destinasi.getGambar())));
-            imageView.setFitWidth(100);  // Lebar gambar
-            imageView.setFitHeight(100); // Tinggi gambar
-            imageView.setPreserveRatio(true);
+            try {
+                // Membuat ImageView
+                ImageView imageView = new ImageView();
+                if (destinasi.getGambar() != null) {
+                    imageView.setImage(new Image(new ByteArrayInputStream(destinasi.getGambar())));
+                } else {
+                    System.out.println("No image found for destination: " + destinasi.getNama());
+                }
+                imageView.setFitWidth(150);
+                imageView.setFitHeight(150);
+                imageView.setPreserveRatio(true);
 
-            // Membuat teks nama destinasi
-            Text namaText = new Text(destinasi.getNama());
-            namaText.setStyle("-fx-font-size: 14px; -fx-text-alignment: center;");
+                // Membuat teks nama destinasi
+                Text namaText = new Text(destinasi.getNama());
+                namaText.setStyle("-fx-font-size: 18px; -fx-text-alignment: center;");
 
-            // Bungkus gambar dan teks dalam VBox
-            VBox itemBox = new VBox(imageView, namaText);
-            itemBox.setSpacing(5);
-            itemBox.setStyle("-fx-alignment: center;");
+                // Menggabungkan gambar dan nama ke dalam VBox
+                VBox itemBox = new VBox(imageView, namaText);
+                itemBox.setSpacing(5);
+                itemBox.setStyle("-fx-alignment: center;");
 
-            // Tambahkan itemBox ke dalam container
-            container.getChildren().add(itemBox);
+                // Menambahkan VBox ke container
+                container.getChildren().add(itemBox);
+            } catch (Exception e) {
+                System.err.println("Error loading destination: " + (destinasi != null ? destinasi.getNama() : "unknown"));
+                e.printStackTrace();
+            }
         }
     }
-    
-    public void handleKembaliAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Destinasi.fxml"));
-        Parent root = loader.load();
-        Stage stage = (Stage) btnKembali.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+
+    @FXML
+    public void handleKembaliAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Destinasi.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) btnKembali.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Failed to load Destinasi.fxml: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }
