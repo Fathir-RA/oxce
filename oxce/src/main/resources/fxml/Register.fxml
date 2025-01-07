@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Bloom?>
@@ -17,7 +18,7 @@
          <children>
             <TextField fx:id="idUserField" layoutX="100.0" layoutY="109.0" promptText="ID User" style="-fx-background-color: transparent; -fx-border-color: #80C4E9; -fx-border-width: 0px 0px 2px 0px;" />
             <PasswordField fx:id="passwordField" layoutX="100.0" layoutY="291.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #80C4E9; -fx-border-width: 0px 0px 2px 0px;" />
-            <Button fx:id="btnDaftar" layoutX="150.0" layoutY="414.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-color: #80C4E9;" stylesheets="@../css/Button.css" text="Daftar" />
+            <Button fx:id="btnDaftar" layoutX="135.0" layoutY="389.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="82.0" style="-fx-background-color: #80C4E9; -fx-background-radius: 20;" stylesheets="@../css/Button.css" text="DAFTAR" />
             <Text fill="#80c4e9" layoutX="120.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register">
                <font>
                   <Font name="System Bold" size="28.0" />
@@ -27,18 +28,24 @@
             <TextField fx:id="umurField" layoutX="100.0" layoutY="198.0" promptText="Umur" style="-fx-background-color: transparent; -fx-border-color: #80C4E9; -fx-border-width: 0px 0px 2px 0px;" />
             <TextField fx:id="alamatField" layoutX="100.0" layoutY="245.0" promptText="Alamat" style="-fx-background-color: transparent; -fx-border-color: #80C4E9; -fx-border-width: 0px 0px 2px 0px;" />
             <TextField fx:id="noHpField" layoutX="100.0" layoutY="337.0" promptText="No HP" style="-fx-background-color: transparent; -fx-border-color: #80C4E9; -fx-border-width: 0px 0px 2px 0px;" />
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/IconPenyelam.png" />
+               </image>
+            </ImageView>
+            <Hyperlink fx:id="linkLogin" layoutX="153.0" layoutY="442.0" onAction="#handleLoginAction" stylesheets="@../css/Button.css" text="Login" underline="true" />
          </children>
       </AnchorPane>
    </right>
    <left>
       <AnchorPane prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: #80c4e9;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="220.0" fitWidth="220.0" layoutX="65.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="224.0" fitWidth="227.0" layoutX="65.0" layoutY="114.0" pickOnBounds="true">
                <image>
-                  <Image url="@/images/IconPenyelam.jfif" />
+                  <Image url="@../images/IconPenyelam.png" />
                </image>
             </ImageView>
-            <Text fill="WHITE" layoutX="55.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ocean Expedition">
+            <Text fill="WHITE" layoutX="59.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ocean Expedition">
                <font>
                   <Font size="31.0" />
                </font>
