@@ -1,32 +1,21 @@
 package com.mycompany.ocxe.Controller;
 
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import java.io.IOException;
 
-public class DestinasiController {
-
-    @FXML
-    private Button btnPramuka;
+public class BerandaController {
 
     @FXML
-    private Button btnSepa;
-
-    @FXML
-    private Button btnHarapan;
-
-    @FXML
-    private Button btnBeranda;
+    private Button btnDestinasi;
 
     @FXML
     private Button btnLihatTiket;
@@ -35,79 +24,83 @@ public class DestinasiController {
     private Button btnLogOut;
 
     @FXML
+    private Button btnPesan;
+
+    @FXML
+    private ImageView imageSlider;
+
+    private int currentImageIndex = 0;
+    private final String[] images = {
+        "/images/image1.JPG",
+        "/images/image2.JPG",
+        "/images/image3.JPG"
+    };
+
+    @FXML
     private void initialize() {
-        try {
-            // Configure Pulau Pramuka Button
-
-            // Configure Pulau Harapan Button
-//            Image harapanImg = new Image(getClass().getResource("/images/PulauHarapan.JPG").toExternalForm());
-//            ImageView harapanView = new ImageView(harapanImg);
-//            harapanView.setFitWidth(80);
-//            harapanView.setFitHeight(80);
-//            btnHarapan.setGraphic(harapanView);
-//            btnHarapan.setTooltip(new Tooltip("Pulau Harapan"));
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        // Set the first image in the slider
+        if (images.length > 0) {
+            imageSlider.setImage(new Image(images[currentImageIndex]));
+            startImageSlider();
         }
     }
-     public void handlePramukaAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PulauPramuka.fxml"));
-        Parent root = loader.load();
-        Stage stage = (Stage) btnPramuka.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
-      public void handleSepaAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PulauSepa.fxml"));
-        Parent root = loader.load();
-        Stage stage = (Stage) btnSepa.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
-   
 
-    public void handleHarapanAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PulauHarapan.fxml"));
-        Parent root = loader.load();
-        Stage stage = (Stage) btnHarapan.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+    private void startImageSlider() {
+        Thread sliderThread = new Thread(() -> {
+            while (true) {
+                try {
+                    Thread.sleep(3000); // Change image every 3 seconds
+                    currentImageIndex = (currentImageIndex + 1) % images.length;
+                    javafx.application.Platform.runLater(() -> 
+                        imageSlider.setImage(new Image(images[currentImageIndex]))
+                    );
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        sliderThread.setDaemon(true);
+        sliderThread.start();
     }
 
-    private void showAlert(String title, String content) {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Information");
-        alert.setHeaderText(title);
-        alert.setContentText(content);
-        alert.showAndWait();
+    @FXML
+    private void handleLogOutAction(ActionEvent event) {
+        loadScene("/fxml/login.fxml", "Login", btnLogOut);
     }
 
-    public void handleBerandaAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Beranda.fxml"));
-        Parent root = loader.load();
-        Stage stage = (Stage) btnBeranda.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+    @FXML
+    private void handleLihatDestinasiAction(ActionEvent event) {
+        loadScene("/fxml/Destinasi.fxml", "Destinasi", btnDestinasi);
     }
 
-    public void handleLihatTiketAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LihatTiket.fxml"));
-        Parent lihatTiketRoot = loader.load();
-        Scene lihatTiketScene = new Scene(lihatTiketRoot);
-
-        Stage currentStage = (Stage) btnLihatTiket.getScene().getWindow();
-        currentStage.setScene(lihatTiketScene);
-        currentStage.setTitle("Lihat Tiket");
+    @FXML
+    private void handleLihatTiketAction(ActionEvent event) {
+        loadScene("/fxml/LihatTiket.fxml", "Lihat Tiket", btnLihatTiket);
     }
 
-    public void handleLogOutAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
-        Parent loginRoot = loader.load();
-        Scene loginScene = new Scene(loginRoot);
+    @FXML
+    private void handlePesanSekarangAction(ActionEvent event) {
+        loadScene("/fxml/PesanTiket.fxml", "Pesan Tiket", btnPesan);
+    }
 
-        Stage currentStage = (Stage) btnLogOut.getScene().getWindow();
-        currentStage.setScene(loginScene);
-        currentStage.setTitle("Login");
+    private void loadScene(String fxmlPath, String title, Button sourceButton) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) sourceButton.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle(title);
+        } catch (IOException e) {
+            e.printStackTrace();
+            showError("Error loading " + title + ": " + e.getMessage());
+        }
+    }
+
+    private void showError(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setContentText(message);
+        alert.show();
     }
 }
