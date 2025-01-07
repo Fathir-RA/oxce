@@ -132,11 +132,8 @@
 
                     <!-- Container untuk kategori Flora -->
                     <VBox prefWidth="680.0" spacing="10">
-                        <HBox fx:id="floraContainer" prefHeight="150.0" prefWidth="660.0" spacing="20">
-                     <children>
-                              <Label alignment="CENTER" prefHeight="27.0" prefWidth="70.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Flora" />
-                     </children>
-                  </HBox>
+                        <Label alignment="CENTER" prefHeight="27.0" prefWidth="70.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Flora" />
+                        <HBox fx:id="floraContainer" prefHeight="150.0" prefWidth="660.0" spacing="20" />
                     </VBox>
 
                     <!-- Container untuk kategori Fauna -->
