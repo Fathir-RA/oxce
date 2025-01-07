@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Hyperlink;
 
 public class RegisterController {
 
@@ -30,6 +31,8 @@ public class RegisterController {
     private TextField noHpField; // Field No HP
     @FXML
     private PasswordField passwordField; // Field Password
+    @FXML
+    private Hyperlink linkLogin;
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
@@ -76,6 +79,23 @@ public class RegisterController {
             showError("Umur harus berupa angka!");
         }
     }
+    
+    @FXML
+    private void handleLoginAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml")); // Sesuaikan path jika berbeda
+            Parent loginRoot = loader.load();
+            Scene loginScene = new Scene(loginRoot);
+
+            Stage currentStage = (Stage) linkLogin.getScene().getWindow();
+            currentStage.setScene(loginScene);
+            currentStage.setTitle("Login");
+        } catch (IOException e) {
+            e.printStackTrace();
+            showError("Error loading Login: " + e.getMessage());
+        }
+    }
+
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
