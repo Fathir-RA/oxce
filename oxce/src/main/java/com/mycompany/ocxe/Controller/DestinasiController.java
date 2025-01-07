@@ -38,22 +38,6 @@ public class DestinasiController {
     private void initialize() {
         try {
             // Configure Pulau Pramuka Button
-            Image pramukaImg = new Image(getClass().getResource("/images/PulauPramuka.JPEG").toExternalForm());
-            ImageView pramukaView = new ImageView(pramukaImg);
-            pramukaView.setFitWidth(80);
-            pramukaView.setFitHeight(80);
-            btnPramuka.setGraphic(pramukaView);
-            btnPramuka.setTooltip(new Tooltip("Pulau Pramuka"));
-            btnPramuka.setOnAction(this::handlePramukaAction);
-
-            // Configure Pulau Sepa Button
-            Image sepaImg = new Image(getClass().getResource("/images/PulauSepa.JPG").toExternalForm());
-            ImageView sepaView = new ImageView(sepaImg);
-            sepaView.setFitWidth(80);
-            sepaView.setFitHeight(80);
-            btnSepa.setGraphic(sepaView);
-            btnSepa.setTooltip(new Tooltip("Pulau Sepa"));
-            btnSepa.setOnAction(this::handleSepaAction);
 
             // Configure Pulau Harapan Button
 //            Image harapanImg = new Image(getClass().getResource("/images/PulauHarapan.JPG").toExternalForm());
@@ -67,14 +51,21 @@ public class DestinasiController {
             e.printStackTrace();
         }
     }
-
-    public void handlePramukaAction(ActionEvent event) {
-        showAlert("Pulau Pramuka", "Pulau Pramuka offers a peaceful getaway and is perfect for diving.");
+     public void handlePramukaAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PulauPramuka.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) btnPramuka.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
-
-    public void handleSepaAction(ActionEvent event) {
-        showAlert("Pulau Sepa", "Pulau Sepa offers a peaceful getaway and is perfect for diving.");
+      public void handleSepaAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PulauSepa.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) btnSepa.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
+   
 
     public void handleHarapanAction(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PulauHarapan.fxml"));
