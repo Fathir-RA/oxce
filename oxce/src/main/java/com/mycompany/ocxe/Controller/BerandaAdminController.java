@@ -297,7 +297,7 @@ public class BerandaAdminController {
     @FXML
     private void handleSelectImage(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", ".png", ".jpg", ".jpeg", ".gif"));
         File selectedFile = fileChooser.showOpenDialog(null);
         
         if (selectedFile != null) {
